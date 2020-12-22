@@ -16,6 +16,7 @@
     DROP TABLE IF EXISTS `leaver_hdw_mtm`;
     DROP TABLE IF EXISTS `mover_hdw_mtm`;
     DROP TABLE IF EXISTS `mover_app_mtm`;
+    DROP TABLE IF EXISTS `email`;
 
     -- Drop JML tables
     DROP TABLE IF EXISTS `joiner`;
@@ -222,6 +223,30 @@
         ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
     /*------------------------------------------
+    --  EMAIL - Create Table                  --
+    ------------------------------------------*/
+
+    DROP TABLE IF EXISTS `email`;
+
+    CREATE TABLE IF NOT EXISTS `email`
+        (
+         `id` int(11) NOT NULL AUTO_INCREMENT
+        ,`joiner_id` int(11) DEFAULT NULL
+        ,`mover_id` int(11) DEFAULT NULL
+        ,`leaver_id` int(11) DEFAULT NULL
+        ,`email_to` text NOT NULL
+        ,`email_from` varchar(255) NOT NULL
+        ,`email_cc` text DEFAULT NULL
+        ,`email_bcc` text DEFAULT NULL
+        ,`email_body` text NOT NULL
+        ,`email_subject` varchar(255) NOT NULL
+        ,`sucess_ind` tinyint(1) NOT NULL DEFAULT 1
+        ,`create_date` datetime NOT NULL DEFAULT current_timestamp()
+        ,`update_date` datetime NOT NULL DEFAULT current_timestamp()
+        ,PRIMARY KEY (`id`)
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+    /*------------------------------------------
     --  Foreign Key Constraints               --
     ------------------------------------------*/
 
@@ -245,6 +270,10 @@
 
     ALTER TABLE `joiner_hdw_mtm` ADD CONSTRAINT `fk_joiner_hdw_mtm_joiner`      FOREIGN KEY (`joiner_id`)           REFERENCES `joiner`         (`id`) ON DELETE CASCADE;
     ALTER TABLE `joiner_hdw_mtm` ADD CONSTRAINT `fk_joiner_hdw_mtm_hardware`    FOREIGN KEY (`hardware_id`)         REFERENCES `hardware`       (`id`);
+
+    ALTER TABLE `email`          ADD CONSTRAINT `fk_email_joiner`               FOREIGN KEY (`joiner_id`)           REFERENCES `joiner`         (`id`) ON DELETE CASCADE;
+    ALTER TABLE `email`          ADD CONSTRAINT `fk_email_mover`                FOREIGN KEY (`mover_id`)            REFERENCES `mover`          (`id`) ON DELETE CASCADE;
+    ALTER TABLE `email`          ADD CONSTRAINT `fk_email_leaver`               FOREIGN KEY (`leaver_id`)           REFERENCES `leaver`         (`id`) ON DELETE CASCADE;
 
     COMMIT;
 
