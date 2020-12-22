@@ -4,6 +4,8 @@
     <head>
         <title>JML Webforms</title>
         <link rel="stylesheet" href="<?php echo site_url('assets/css/style.css'); ?>">
+        <link rel="stylesheet" href="<?php echo site_url('assets/css/containers.css'); ?>">
+        <link rel="stylesheet" href="<?php echo site_url('assets/css/images.css'); ?>">
     </head>
 
     <body>
