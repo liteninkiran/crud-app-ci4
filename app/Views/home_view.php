@@ -9,21 +9,18 @@
                         <a href="<?php echo site_url('public'); ?>"><img src="<?php echo site_url('assets/images/joiner.jpg'); ?>" alt="Joiner" class="icon"></a>
                         <a href="<?php echo site_url('public'); ?>" class="no-line"><h2>Joiner</h2></a>
                         <p>A new starter joining the company</p>
-                        <a href="#" class="no-line"><h3>Show Data</h3></a>
                     </div>
 
                     <div class="column-3">
                         <a href="<?php echo site_url('public'); ?>"><img src="<?php echo site_url('assets/images/mover.jpg'); ?>" alt="Mover" class="icon"></a>
                         <a href="<?php echo site_url('public'); ?>" class="no-line"><h2>Mover</h2></a>
                         <p>An employee changing departments</p>
-                        <a href="#" class="no-line"><h3>Show Data</h3></a>
                     </div>
 
                     <div class="column-3">
                         <a href="<?php echo site_url('public'); ?>"><img src="<?php echo site_url('assets/images/leaver.jpg'); ?>" alt="Leaver" class="icon"></a>
                         <a href="<?php echo site_url('public'); ?>" class="no-line"><h2>Leaver</h2></a>
                         <p>An employee leaving the company</p>
-                        <a href="#" class="no-line"><h3>Show Data</h3></a>
                     </div>
 
                 </div>

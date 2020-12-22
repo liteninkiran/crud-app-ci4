@@ -11,14 +11,14 @@
 
     h1
     {
-        font-size: 60px;
+        font-size: 3vw;
         text-align: center;
         font-weight: normal;
     }
 
     h2
     {
-        font-size: 50px;
+        font-size: 2.5vw;
         text-align: center;
         font-weight: normal;
         margin: auto;
@@ -27,7 +27,7 @@
 
     h3
     {
-        font-size: 30px;
+        font-size: 2vw;
         text-align: center;
         font-weight: normal;
         margin: auto;
@@ -36,7 +36,7 @@
 
     p
     {
-        font-size: 24px;
+        font-size: 1.25vw;
         text-align: center;
         color: white;
     }
@@ -87,7 +87,7 @@
     {
         display: inline-block;
         width: 11%;
-        min-width: 150px;
+        min-width: 20%;
         border-style: none;
         margin-left: 0cm;
         margin-right: 0cm;
@@ -104,8 +104,38 @@
         display: block;
         color: #ffffff;
         text-decoration: none;
-        font-size: 18px;
+        font-size: 1vw;
         padding-top: 10px;
         padding-bottom: 10px;
+    }
+
+    @media all and (max-width: 1300px)
+    {
+        h1
+        {
+            font-size: 6vw;
+        }
+
+        h2
+        {
+            font-size: 5vw;
+        }
+
+        h3
+        {
+            font-size: 4vw;
+        }
+
+        p
+        {
+            font-size: 2.5vw;
+        }
+
+
+        #navbar a
+        {
+            font-size: 2vw;
+        }
+
     }
 
