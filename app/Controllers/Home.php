@@ -6,6 +6,8 @@
     {
         public function index()
         {
-            return view('home_view');
+            echo view('template\header');
+            echo view('home_view');
+            echo view('template\footer');
         }
     }
