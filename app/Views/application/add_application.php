@@ -38,7 +38,7 @@
                 </div>
 
                 <div>
-                    <button type="button" id="submit">SUBMIT</button>
+                    <button type="button" id="submit" onclick="validateForm()">SUBMIT</button>
                 </div>
 
             </form>
