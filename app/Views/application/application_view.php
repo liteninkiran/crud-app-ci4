@@ -1,16 +1,18 @@
 
             <div div class="row">
 
-                <div class="column">
+                <div class="column-3">
                     &nbsp;
                 </div>
 
-                <div class="column">
+                <div class="column-3">
                     <h1>Applications</h1>
                 </div>
 
-                <div class="column">
-                    <a href="<?= site_url('public/application/create'); ?>" id="add-record">ADD APPLICATION</a>
+                <div class="column-3">
+                    <form action="<?= site_url('public/application/create'); ?>">
+                        <input type="submit" value="ADD APPLICATION">
+                    </form>
                 </div>
 
             </div>

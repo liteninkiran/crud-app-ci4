@@ -11,14 +11,14 @@
 
     h1
     {
-        font-size: 3vw;
+        font-size: 60px;
         text-align: center;
         font-weight: normal;
     }
 
     h2
     {
-        font-size: 2.5vw;
+        font-size: 40px;
         text-align: center;
         font-weight: normal;
         margin: auto;
@@ -27,7 +27,7 @@
 
     h3
     {
-        font-size: 2vw;
+        font-size: 30px;
         text-align: center;
         font-weight: normal;
         margin: auto;
@@ -36,7 +36,7 @@
 
     p
     {
-        font-size: 1.25vw;
+        font-size: 24px;
         text-align: center;
         color: white;
     }
@@ -87,7 +87,7 @@
     {
         display: inline-block;
         width: 11%;
-        min-width: 20%;
+        min-width: 13%;
         border-style: none;
         margin-left: 0cm;
         margin-right: 0cm;
@@ -104,38 +104,37 @@
         display: block;
         color: #ffffff;
         text-decoration: none;
-        font-size: 1vw;
+        font-size: 14pt;
         padding-top: 10px;
         padding-bottom: 10px;
     }
 
-    @media all and (max-width: 1300px)
+
+    @media all and (max-width: 1400px)
     {
         h1
         {
-            font-size: 6vw;
+            font-size: 4.2vw;
         }
 
         h2
         {
-            font-size: 5vw;
+            font-size: 3vw;
         }
 
         h3
         {
-            font-size: 4vw;
+            font-size: 2.3vw;
         }
 
         p
         {
-            font-size: 2.5vw;
+            font-size: 1.7vw;
         }
-
 
         #navbar a
         {
-            font-size: 2vw;
+            font-size: 1.3vw;
         }
-
     }
 

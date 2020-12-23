@@ -16,9 +16,9 @@
 
             <h1><?= $header; ?></h1>
 
-            <form method="post" id="jmlForm" name="add_application" action="<?= $actionLink; ?>">
+            <form method="post" id="jmlForm" action="<?= $actionLink; ?>">
 
-                <div class="tab" id="application-tab">
+                <div class="jml-tab" id="application-tab">
 
                     <div>
                         <label>Application *</label>
@@ -37,7 +37,7 @@
 
                 </div>
 
-                <div>
+                <div class="align-r">
                     <button type="button" id="submit" onclick="validateForm()">SUBMIT</button>
                 </div>
 
