@@ -1,0 +1,52 @@
+
+    table, td, th
+    {
+        border: 1px solid white;
+        padding: 10px;
+    }
+
+    td
+    {
+        white-space: nowrap;
+    }
+
+    .tbl-col-40
+    {
+        width: 40px;
+    }
+
+    .tbl-col-60
+    {
+        width: 60px;
+    }
+
+    .tbl-col-100
+    {
+        width: 100px;
+    }
+
+    table
+    {
+        border-collapse: collapse;
+        width: 80%;
+        table-layout: fixed;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1cm;
+        font-family: arial;
+        font-size: 24px;
+        color: white;
+    }
+
+    .table-wide
+    {
+        border-collapse: collapse;
+        width: auto;
+        margin-left: 1cm;
+        margin-right: 1cm;
+        margin-top: 1cm;
+        font-family: arial;
+        font-size: 20px;
+        color: white;
+    }
+

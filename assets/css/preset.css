@@ -4,4 +4,17 @@
         text-align: right;
     }
 
+    .no-line
+    {
+        text-decoration: none; 
+    }
 
+    .margin-t
+    {
+        margin-top: 1cm;
+    }
+
+    .margin-r
+    {
+        margin-right: 1cm;
+    }

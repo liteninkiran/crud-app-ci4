@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="<?php echo site_url('assets/css/image.css'); ?>">
         <link rel="stylesheet" href="<?php echo site_url('assets/css/preset.css'); ?>">
         <link rel="stylesheet" href="<?php echo site_url('assets/css/form.css'); ?>">
+        <link rel="stylesheet" href="<?php echo site_url('assets/css/table.css'); ?>">
     </head>
 
     <body>

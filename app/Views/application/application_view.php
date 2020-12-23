@@ -1,3 +1,4 @@
+            <a href="#">Link</a>
 
             <div div class="row">
 
@@ -22,7 +23,7 @@
                 if($application)
                 {
 ?>
-                    <table id="application-list">
+                    <table id="object-list">
                         <thead>
                             <tr>
                                 <th>Application</th>
@@ -44,8 +45,8 @@
                                     <td><?php echo $app->application; ?></td>
                                     <td><?php echo $app->application_owner_name; ?></td>
                                     <td><?php echo $app->application_owner_email; ?></td>
-                                    <td><a href="<?= $editUrl; ?>" id="edit-record">EDIT</a></td>
-                                    <td><a href="javascript:;" onclick="confirmDelete('<?= $deleteUrl; ?>', '<?= $descr; ?>');" id="delete-record">DELETE</a></td>
+                                    <td><form action="<?= $editUrl; ?>"><input type="submit" value="EDIT"></form></td>
+                                    <td><button onclick="confirmDelete('<?= $deleteUrl; ?>', '<?= $descr; ?>');">DELETE</button></td>
                                 </tr>
 <?php
                             }

@@ -38,7 +38,8 @@
                 </div>
 
                 <div class="align-r">
-                    <button type="button" id="jml-submit" onclick="validateForm(this.parentElement.parentElement.id)">SUBMIT</button>
+                    <a href="<?= site_url('public/application'); ?>"><button type="button" id="jml-cancel" class="margin-r">CANCEL</button></a>
+                    <button type="button" id="jml-submit" onclick="validateForm(this.parentElement.parentElement.id)" class="margin-t">SUBMIT</button>
                 </div>
 
             </form>
