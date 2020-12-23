@@ -2,7 +2,12 @@
     // REGEX for email
     const regExEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
-    function validateForm()
+    function test(x)
+    {
+        console.log(x);
+    }
+
+    function validateForm(formId)
     {
         // RETURN variable - store if form is valid
         var formValid = true;
@@ -36,7 +41,15 @@
             formValid = formValid && inputValid;
         }
 
-        return formValid;
+        if(formValid)
+        {
+            var form = document.getElementById('jmlForm');
+            form.submit();
+        }
+        else
+        {
+            alert('Invalid');
+        }
     }
 
     function matchRegEx(regEx, field)

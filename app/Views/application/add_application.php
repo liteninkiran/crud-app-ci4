@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="align-r">
-                    <button type="button" id="submit" onclick="validateForm()">SUBMIT</button>
+                    <button type="button" id="jml-submit" onclick="validateForm(this.parentElement.parentElement.id)">SUBMIT</button>
                 </div>
 
             </form>

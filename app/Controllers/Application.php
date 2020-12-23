@@ -29,7 +29,7 @@
         {
             echo view('template/header');
             echo view('application/add_application');
-            echo view('template/footer');
+            echo view('template/footer_form');
         }
 
         // Edit Application form
@@ -46,7 +46,7 @@
 
             echo view('template/header');
             echo view('application/add_application', $data);
-            echo view('template/footer');
+            echo view('template/footer_form');
         }
 
         // Insert data
