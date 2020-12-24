@@ -354,7 +354,7 @@ class Connection extends BaseConnection implements ConnectionInterface
 		$sql = 'SELECT "indexname", "indexdef"
 			FROM "pg_indexes"
 			WHERE LOWER("tablename") = ' . $this->escape(strtolower($table)) . '
-			AND "schemaname" = ' . $this->escape('public');
+			AND "schemaname" = ' . $this->escape('public_html');
 
 		if (($query = $this->query($sql)) === false)
 		{

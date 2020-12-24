@@ -2,8 +2,8 @@
 <?php
 
         // Store link for form action
-        $insertLink = site_url('public/application/store');
-        $updateLink = site_url('public/application/update/') . $application->id;
+        $insertLink = site_url('public_html/application/store');
+        $updateLink = site_url('public_html/application/update/') . $application->id;
 
         // Store link for form action
         $actionLink = $application->id ? $updateLink : $insertLink;
@@ -53,7 +53,7 @@
                 </div>
  
                 <div class="align-r">
-                    <a href="<?= site_url('public/application'); ?>"><button type="button" id="jml-cancel" class="margin-r">CANCEL</button></a>
+                    <a href="<?= site_url('public_html/application'); ?>"><button type="button" id="jml-cancel" class="margin-r">CANCEL</button></a>
                     <button type="button" id="jml-submit" onclick="validateForm(this.parentElement.parentElement.id)" class="margin-t">SUBMIT</button>
                 </div>
 

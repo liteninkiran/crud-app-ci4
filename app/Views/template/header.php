@@ -14,7 +14,7 @@
     <body>
 
         <div class="header">
-            <a href="<?= site_url('public'); ?>"><img src="<?php echo site_url('assets/images/header-image.png'); ?>" alt="Brand Image" id="header-image"></a>
+            <a href="<?= site_url('public_html'); ?>"><img src="<?php echo site_url('assets/images/header-image.png'); ?>" alt="Brand Image" id="header-image"></a>
         </div>
 
         <div class="dashboard-wrapper">

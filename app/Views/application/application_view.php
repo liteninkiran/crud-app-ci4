@@ -10,7 +10,7 @@
                 </div>
 
                 <div class="column-3">
-                    <form action="<?= site_url('public/application/create'); ?>" class="margin-t">
+                    <form action="<?= site_url('public_html/application/create'); ?>" class="margin-t">
                         <input type="submit" value="ADD APPLICATION">
                     </form>
                 </div>
@@ -36,8 +36,8 @@
 <?php
                             foreach($application as $app)
                             {
-                                $deleteUrl = site_url('public/application/delete/' . $app->id);
-                                $editUrl = site_url('public/application/edit/' . $app->id);
+                                $deleteUrl = site_url('public_html/application/delete/' . $app->id);
+                                $editUrl = site_url('public_html/application/edit/' . $app->id);
                                 $descr = $app->application;
 ?>
                                 <tr>
