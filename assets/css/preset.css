@@ -18,3 +18,8 @@
     {
         margin-right: 1cm;
     }
+
+    .hide-me
+    {
+        display: none;
+    }

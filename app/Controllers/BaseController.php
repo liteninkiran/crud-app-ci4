@@ -43,4 +43,8 @@ class BaseController extends Controller
 		// $this->session = \Config\Services::session();
 	}
 
+    protected function containsOnlyNull($input)
+    {
+        return empty(array_filter($input, function ($a) { return $a !== null;}));
+    }
 }

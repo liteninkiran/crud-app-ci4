@@ -34,9 +34,11 @@
 
     function validateForm(formId)
     {
-        // RETURN variable - store if form is valid
+        // Retrieve the form
+        var form = document.getElementById('jmlForm');
+
+        // Store if form is valid
         var formValid = true;
-        var inputValid;
 
         // Get Input, Select and Text Area elements
         var inputEls = document.querySelectorAll('input, select, textarea');
@@ -47,6 +49,9 @@
             // Initialise check variables
             var chkRequired = true;
             var chkEmail = true;
+
+            // Initialise valid variable (all checks must pass)
+            var inputValid = false;
 
             // Store current element
             var inputEl = inputEls[i];
@@ -69,10 +74,18 @@
                     // Find the label of the field
                     label = inputEl.previousElementSibling;
 
-                    message = label.innerText;
-                    message = message.replace(" *", "");
-                    message += " is invalid. Please check and try again.\n\n";
-                    message += inputEls[i].value;
+                    if(label == null)
+                    {
+                        message  = "Email is invalid. Please check and try again.\n\n";
+                        message += inputEl.value;
+                    }
+                    else
+                    {
+                        message = label.innerText;
+                        message = message.replace(" *", "");
+                        message += " is invalid. Please check and try again.\n\n";
+                        message += inputEl.value;
+                    }
 
                     alert(message);
                 }
@@ -95,9 +108,6 @@
         // If the form is valid, ask user if they wish to proceed with submission
         if(formValid)
         {
-            // Retrieve the form
-            var form = document.getElementById('jmlForm');
-
             // Ask user for confirmation
             var response = confirm("Are you sure you want to save the record?");
 

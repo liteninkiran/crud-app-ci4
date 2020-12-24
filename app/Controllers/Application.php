@@ -52,11 +52,33 @@
         // Insert data
         public function store()
         {
-            $appModel = new Application_Model();
-            $data = $this->getData();
-            $appModel->insert($data);
+            // Retrieve the form data
+            $formData = $this->getData();
 
-            return $this->response->redirect(site_url('public/application'));
+            // Create a Model
+            $appModel = new Application_Model();
+
+            // Insert the record, return the ID
+            $id = $appModel->insert($formData);
+
+            // If we git an ID back, redirect to main view
+            if($id)
+            {
+                return $this->response->redirect(site_url('public/application'));
+            }
+            else
+            {
+                // Load the Model's errors
+                $data['errors'] = $appModel->errors();
+
+                // Load the form data
+                $data['formData'] = $formData;
+
+                // Load the errors view
+                echo view('template/header');
+                echo view('db_error', $data);
+                echo view('template/footer');
+            }
         }
 
         // Delete Application
@@ -71,15 +93,50 @@
         // Update Application
         public function update($id)
         {
-            $appModel = new Application_Model();
-            $data = $this->getData();
-            $appModel->update($id, $data);
+            $formData = $this->getData();
 
-            return $this->response->redirect(site_url('public/application'));
+            $appModel = new Application_Model();
+
+            $fieldName = 'application';
+            $fieldRules = 'is_unique[application.application,id,' . $id . ']';
+
+            $appModel->setValidationRule($fieldName, $fieldRules);
+
+            // Return the Applications
+            $app = $appModel->find($id);
+
+            $appModel->update($id, $formData);
+
+            if($appModel->errors())
+            {
+                // Load the Model's errors
+                $data['errors'] = $appModel->errors();
+
+                // Load the form data
+                $data['formData'] = $formData;
+
+                // Load the errors view
+                echo view('template/header');
+                echo view('db_error', $data);
+                echo view('template/footer');
+            }
+            else
+            {
+                return $this->response->redirect(site_url('public/application'));
+            }
         }
 
         private function getData()
         {
+            if($this->request->getVar('application') == null)
+            {
+                echo view('template/header');
+                echo view('unauthorised');
+                echo view('template/footer');
+
+                exit();
+            }
+
             $data =
             [
                 'application'             => $this->request->getVar('application'),
