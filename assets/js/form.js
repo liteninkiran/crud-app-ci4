@@ -1,10 +1,35 @@
 
+    var classInvalid = " invalid";
+    var classChanged = " changed";
+
     // REGEX for email
     const regExEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
-    function test(x)
+    function changeMe(inputEl)
     {
-        console.log(x);
+        removeClass(inputEl, classInvalid)
+        addClass(inputEl, classChanged)
+    }
+
+    function addClass(inputEl, clsName)
+    {
+        if(!inputEl.className.includes(clsName))
+        {
+            inputEl.className += clsName;
+        }
+    }
+
+    function removeClass(inputEl, clsName)
+    {
+        if(inputEl.className.includes(clsName))
+        {
+            inputEl.className = inputEl.className.replace(clsName, "");
+        }
+    }
+
+    function matchRegEx(regEx, field)
+    {
+        return field.value.match(regEx) != null;
     }
 
     function validateForm(formId)
@@ -19,8 +44,11 @@
         // A loop that checks every input field in the current tab
         for(i = 0; i < inputEls.length; i++)
         {
+            // Initialise check variables
             var chkRequired = true;
             var chkEmail = true;
+
+            // Store current element
             var inputEl = inputEls[i];
 
             // Check REQUIRED
@@ -35,26 +63,53 @@
             {
                 // Check if email address matches RegEx
                 chkEmail = matchRegEx(regExEmail, inputEl);
+
+                if(!chkEmail)
+                {
+                    // Find the label of the field
+                    label = inputEl.previousElementSibling;
+
+                    message = label.innerText;
+                    message = message.replace(" *", "");
+                    message += " is invalid. Please check and try again.\n\n";
+                    message += inputEls[i].value;
+
+                    alert(message);
+                }
             }
 
+            // Flag input as valid/invalid
             inputValid = chkRequired && chkEmail;
+
+            // Flag form as valid/invalid
             formValid = formValid && inputValid;
+
+            // Change background colour of invalid inputs by giving "invalid" class
+            if(!inputValid)
+            {
+                removeClass(inputEl, classChanged)
+                addClass(inputEl, classInvalid)
+            }
         }
 
+        // If the form is valid, ask user if they wish to proceed with submission
         if(formValid)
         {
+            // Retrieve the form
             var form = document.getElementById('jmlForm');
-            form.submit();
+
+            // Ask user for confirmation
+            var response = confirm("Are you sure you want to save the record?");
+
+            // Check user response
+            if(response == true)
+            {
+                // Submit form
+                form.submit();
+            }
         }
         else
         {
-            alert('Invalid');
+
         }
     }
-
-    function matchRegEx(regEx, field)
-    {
-        return field.value.match(regEx) != null;
-    }
-
-

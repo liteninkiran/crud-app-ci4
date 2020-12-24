@@ -46,6 +46,16 @@
         padding-right: 20px;
     }
 
+    .changed
+    {
+        background-color: rgb(200, 255, 200);
+    }
+
+    .invalid
+    {
+        background-color: #ffdddd;
+    }
+
     @media all and (max-width: 1400px)
     {
         label
@@ -63,6 +73,3 @@
             font-size: 1.2vw;
         }
     }
-
-
-

@@ -1,4 +1,3 @@
-            <a href="#">Link</a>
 
             <div div class="row">
 
@@ -11,7 +10,7 @@
                 </div>
 
                 <div class="column-3">
-                    <form action="<?= site_url('public/application/create'); ?>">
+                    <form action="<?= site_url('public/application/create'); ?>" class="margin-t">
                         <input type="submit" value="ADD APPLICATION">
                     </form>
                 </div>

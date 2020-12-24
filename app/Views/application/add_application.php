@@ -22,17 +22,32 @@
 
                     <div>
                         <label>Application *</label>
-                        <input type="text" name="application" placeholder="Enter the application name" required value="<?= $application->application; ?>">
+                        <input type           = "text"
+                               name           = "application"
+                               placeholder    = "Enter the application name"
+                               value          = "<?= $application->application; ?>"
+                               oninput        = "changeMe(this)"
+                               required>
                     </div>
 
                     <div>
                         <label>Application Owner Name *</label>
-                        <input type="text" name="application-owner-name" placeholder="Enter the application owner name" required value="<?= $application->application_owner_name; ?>">
+                        <input type        = "text"
+                               name        = "application-owner-name"
+                               placeholder = "Enter the application owner name"
+                               value       = "<?= $application->application_owner_name; ?>"
+                               oninput     = "changeMe(this)"
+                               required>
                     </div>
 
                     <div>
                         <label>Application Owner Email *</label>
-                        <input type="email" name="application-owner-email" placeholder="Enter the application owner email" required value="<?= $application->application_owner_email; ?>">
+                        <input type        = "email"
+                               name        = "application-owner-email"
+                               placeholder = "Enter the application owner email"
+                               value       = "<?= $application->application_owner_email; ?>"
+                               oninput     = "changeMe(this)"
+                               required>
                     </div>
 
                 </div>
