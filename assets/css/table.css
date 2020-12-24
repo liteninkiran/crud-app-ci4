@@ -10,21 +10,6 @@
         white-space: nowrap;
     }
 
-    .tbl-col-40
-    {
-        width: 40px;
-    }
-
-    .tbl-col-60
-    {
-        width: 60px;
-    }
-
-    .tbl-col-100
-    {
-        width: 100px;
-    }
-
     table
     {
         border-collapse: collapse;
@@ -50,3 +35,16 @@
         color: white;
     }
 
+    .tbl-col-40  { width:  40px; }
+    .tbl-col-60  { width:  60px; }
+    .tbl-col-100 { width: 100px; }
+
+    @media all and (max-width: 1400px)
+    {
+        table
+        {
+            font-size: 1.8vw;
+        }
+
+        .tbl-col-100 { width: 7vw; }
+    }
