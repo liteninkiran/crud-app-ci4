@@ -53,7 +53,7 @@
         public function store()
         {
             // Retrieve the form data
-            $formData = $this->getData();
+            $formData = $this->getData(true);
 
             // Create a Model
             $appModel = new Application_Model();
@@ -126,7 +126,7 @@
             }
         }
 
-        private function getData()
+        private function getData($insert = false)
         {
             if($this->request->getVar('application') == null)
             {
@@ -141,8 +141,14 @@
             [
                 'application'             => $this->request->getVar('application'),
                 'application_owner_name'  => $this->request->getVar('application-owner-name'),
-                'application_owner_email' => $this->request->getVar('application-owner-email')
+                'application_owner_email' => $this->request->getVar('application-owner-email'),
+                'update_user'             => get_current_user()
             ];
+
+            if($insert)
+            {
+                $data['create_user'] = get_current_user();
+            }
 
             return $data;            
         }

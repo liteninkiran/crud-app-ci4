@@ -40,6 +40,8 @@
         ,`application_owner_email` varchar(255) NOT NULL
         ,`create_date` datetime NOT NULL DEFAULT current_timestamp()
         ,`update_date` datetime NOT NULL DEFAULT current_timestamp()
+        ,`create_user` varchar(255) NOT NULL
+        ,`update_user` varchar(255) NOT NULL
         ,PRIMARY KEY (`id`)
         ,UNIQUE KEY `uc_application` (`application`)
         ) ENGINE=InnoDB AUTO_INCREMENT=14;
@@ -54,6 +56,8 @@
         ,`department` varchar(255) NOT NULL
         ,`create_date` datetime NOT NULL DEFAULT current_timestamp()
         ,`update_date` datetime NOT NULL DEFAULT current_timestamp()
+        ,`create_user` varchar(255) NOT NULL
+        ,`update_user` varchar(255) NOT NULL
         ,PRIMARY KEY (`id`)
         ,UNIQUE KEY `uc_department` (`department`)
         ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
@@ -68,6 +72,8 @@
         ,`hardware` varchar(255) NOT NULL
         ,`create_date` datetime NOT NULL DEFAULT current_timestamp()
         ,`update_date` datetime NOT NULL DEFAULT current_timestamp()
+        ,`create_user` varchar(255) NOT NULL
+        ,`update_user` varchar(255) NOT NULL
         ,PRIMARY KEY (`id`)
         ,UNIQUE KEY `uc_hardware` (`hardware`)
         ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
@@ -97,6 +103,8 @@
         ,`additional_requirements` text DEFAULT NULL
         ,`create_date` datetime NOT NULL DEFAULT current_timestamp()
         ,`update_date` datetime NOT NULL DEFAULT current_timestamp()
+        ,`create_user` varchar(255) NOT NULL
+        ,`update_user` varchar(255) NOT NULL
         ,PRIMARY KEY (`id`)
         ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
@@ -111,6 +119,8 @@
         ,`application_id` int(11) NOT NULL
         ,`create_date` datetime NOT NULL DEFAULT current_timestamp()
         ,`update_date` datetime NOT NULL DEFAULT current_timestamp()
+        ,`create_user` varchar(255) NOT NULL
+        ,`update_user` varchar(255) NOT NULL
         ,PRIMARY KEY (`id`)
         ,UNIQUE KEY `uc_mover_app` (`mover_id`,`application_id`)
         ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
@@ -126,6 +136,8 @@
         ,`hardware_id` int(11) NOT NULL
         ,`create_date` datetime NOT NULL DEFAULT current_timestamp()
         ,`update_date` datetime NOT NULL DEFAULT current_timestamp()
+        ,`create_user` varchar(255) NOT NULL
+        ,`update_user` varchar(255) NOT NULL
         ,PRIMARY KEY (`id`)
         ,UNIQUE KEY `uc_mover_hdw` (`mover_id`,`hardware_id`)
         ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
@@ -148,6 +160,8 @@
         ,`additional_requirements` text DEFAULT NULL
         ,`create_date` datetime NOT NULL DEFAULT current_timestamp()
         ,`update_date` datetime NOT NULL DEFAULT current_timestamp()
+        ,`create_user` varchar(255) NOT NULL
+        ,`update_user` varchar(255) NOT NULL
         ,PRIMARY KEY (`id`)
         ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
@@ -162,6 +176,8 @@
         ,`hardware_id` int(11) NOT NULL
         ,`create_date` datetime NOT NULL DEFAULT current_timestamp()
         ,`update_date` datetime NOT NULL DEFAULT current_timestamp()
+        ,`create_user` varchar(255) NOT NULL
+        ,`update_user` varchar(255) NOT NULL
         ,PRIMARY KEY (`id`)
         ,UNIQUE KEY `uc_leaver_hdw` (`leaver_id`,`hardware_id`)
         ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
@@ -189,6 +205,8 @@
         ,`additional_requirements` text DEFAULT NULL
         ,`create_date` datetime NOT NULL DEFAULT current_timestamp()
         ,`update_date` datetime NOT NULL DEFAULT current_timestamp()
+        ,`create_user` varchar(255) NOT NULL
+        ,`update_user` varchar(255) NOT NULL
         ,PRIMARY KEY (`id`)
         ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
@@ -203,6 +221,8 @@
         ,`application_id` int(11) NOT NULL
         ,`create_date` datetime NOT NULL DEFAULT current_timestamp()
         ,`update_date` datetime NOT NULL DEFAULT current_timestamp()
+        ,`create_user` varchar(255) NOT NULL
+        ,`update_user` varchar(255) NOT NULL
         ,PRIMARY KEY (`id`)
         ,UNIQUE KEY `uc_joiner_app` (`joiner_id`,`application_id`)
         ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
@@ -218,6 +238,8 @@
         ,`hardware_id` int(11) NOT NULL
         ,`create_date` datetime NOT NULL DEFAULT current_timestamp()
         ,`update_date` datetime NOT NULL DEFAULT current_timestamp()
+        ,`create_user` varchar(255) NOT NULL
+        ,`update_user` varchar(255) NOT NULL
         ,PRIMARY KEY (`id`)
         ,UNIQUE KEY `uc_joiner_hdw` (`joiner_id`,`hardware_id`)
         ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
@@ -243,6 +265,8 @@
         ,`sucess_ind` tinyint(1) NOT NULL DEFAULT 1
         ,`create_date` datetime NOT NULL DEFAULT current_timestamp()
         ,`update_date` datetime NOT NULL DEFAULT current_timestamp()
+        ,`create_user` varchar(255) NOT NULL
+        ,`update_user` varchar(255) NOT NULL
         ,PRIMARY KEY (`id`)
         ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 

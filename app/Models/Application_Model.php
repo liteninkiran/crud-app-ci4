@@ -19,7 +19,9 @@
             'id',
             'application',
             'application_owner_name',
-            'application_owner_email'
+            'application_owner_email',
+            'create_user',
+            'update_user'
         ];
 
         protected $validationRules =

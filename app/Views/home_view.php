@@ -2,6 +2,7 @@
                 <h1>Joiners, Movers and Leavers Form</h1>
 
                 <p>To access our forms please select one of the icons below</p>
+                <p><?php echo get_current_user(); ?></p>
 
                 <div class="row">
 
