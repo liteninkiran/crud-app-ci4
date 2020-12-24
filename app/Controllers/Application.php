@@ -64,7 +64,7 @@
             // If we git an ID back, redirect to main view
             if($id)
             {
-                return $this->response->redirect(site_url('public_html/application'));
+                return $this->response->redirect(site_url('application'));
             }
             else
             {
@@ -87,7 +87,7 @@
             $appModel = new Application_Model();
             $appModel->where('id', $id)->delete($id);
 
-            return $this->response->redirect(site_url('public_html/application'));
+            return $this->response->redirect(site_url('application'));
         }
 
         // Update Application
@@ -122,7 +122,7 @@
             }
             else
             {
-                return $this->response->redirect(site_url('public_html/application'));
+                return $this->response->redirect(site_url('application'));
             }
         }
 
