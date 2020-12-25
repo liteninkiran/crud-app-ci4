@@ -31,6 +31,7 @@
                     include('form-controls/employee_staff_num.php');
                     include('form-controls/employee_job_title.php');
                     include('form-controls/department_new_id.php');
+                    include('form-controls/department_prev_id.php');
 ?>
                 </div>
  

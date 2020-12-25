@@ -25,7 +25,8 @@
                     <table id="object-list">
                         <thead>
                             <tr>
-                                <th>Mover</th>
+                                <th>Employee</th>
+                                <th>Move Date</th>
                                 <th class="tbl-col-100"></th>
                                 <th class="tbl-col-100"></th>
                             </tr>
@@ -36,10 +37,11 @@
                             {
                                 $deleteUrl = site_url('mover/delete/' . $m->id);
                                 $editUrl = site_url('mover/edit/' . $m->id);
-                                $descr = $m->mover_full_name;
+                                $descr = $m->employee_full_name;
 ?>
                                 <tr>
-                                    <td><?php echo $m->mover_full_name; ?></td>
+                                    <td><?= $m->employee_full_name; ?></td>
+                                    <td><?= date('d/m/Y', strtotime($m->move_date)); ?></td>
                                     <td><form action="<?= $editUrl; ?>"><input type="submit" value="EDIT"></form></td>
                                     <td><button onclick="confirmDelete('<?= $deleteUrl; ?>', '<?= $descr; ?>');">DELETE</button></td>
                                 </tr>

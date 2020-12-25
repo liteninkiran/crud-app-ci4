@@ -74,7 +74,7 @@ class BaseController extends Controller
         $this->loadView($viewName, $data);
     }
 
-    protected function loadEditView($model, $id, $viewName, $objectName = 'object')
+    protected function loadEditView($model, $id, $viewName, $objectName = 'object', $data = [])
     {
         // Return the record
         $object = $model->find($id);

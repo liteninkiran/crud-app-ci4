@@ -12,24 +12,26 @@
         {
             $model = new Mover_Model();
 
-            $this->loadMainView($model, 'mover ASC', 'mover/mover_view', 'mover');
+            $this->loadMainView($model, 'move_date ASC', 'mover/mover_view', 'mover');
         }
 
         // Add form
         public function create()
         {
-            $model = new Department_Model();
-            $list = $this->getList($model, "department", "department ASC", "Select mover's new department");
-            $data['departmentNew'] = $list;
+            $data['departmentNew'] = $this->getDepartmentList(true);
+            $data['departmentPre'] = $this->getDepartmentList(false);
             $this->loadAddView('mover/add_mover', $data);
         }
 
         // Edit form
         public function edit($id)
         {
+            $data['departmentNew'] = $this->getDepartmentList(true);
+            $data['departmentPre'] = $this->getDepartmentList(false);
+
             $model = new Mover_Model();
 
-            $this->loadEditView($model, $id, 'mover/add_mover', 'mover');
+            $this->loadEditView($model, $id, 'mover/add_mover', 'mover', $data);
         }
 
         public function store()
@@ -89,5 +91,24 @@
             // Return the data
             return $data;            
         }
+
+        private function getDepartmentList($new = true)
+        {
+            $model = new Department_Model();
+
+            if($new)
+            {
+                $placeHolder = "Select mover's new department";
+            }
+            else
+            {
+                $placeHolder = "Select mover's previous department";
+            }
+
+            $list = $this->getList($model, "department", "department ASC", $placeHolder);
+
+            return $list;
+        }
+
     }
 ?>
