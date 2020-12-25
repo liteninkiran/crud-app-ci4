@@ -1,0 +1,134 @@
+
+    /* ALL PAGES */
+
+    body
+    {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #206779;
+        color: white;
+        margin: 0;
+    }
+
+    h1
+    {
+        font-size: 60px;
+        text-align: center;
+        font-weight: normal;
+    }
+
+    h2
+    {
+        font-size: 40px;
+        text-align: center;
+        font-weight: normal;
+        margin: auto;
+        color: white;
+    }
+
+    h3
+    {
+        font-size: 30px;
+        text-align: center;
+        font-weight: normal;
+        margin: auto;
+        color: white;
+    }
+
+    p
+    {
+        font-size: 24px;
+        text-align: center;
+        color: white;
+    }
+
+    /* HEADER */
+    .header
+    {
+        background-color: #ffffff;
+        padding-top: 10px;
+        padding-bottom: 0px;
+        text-align: center;
+    }
+
+    #header-image
+    {
+        max-height: 80px;
+    }
+
+    /* FOOTER */
+    footer
+    {
+        text-align: center;
+        margin-top: 2cm;
+        margin-bottom: 1cm;
+    }
+
+    /* NAVBAR */
+    #navbar
+    {
+        background-color: #333333;
+        color: #ffffff;
+    }
+
+    #navbar ul
+    {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    #navbar li
+    {
+        display: inline-block;
+        width: 11%;
+        min-width: 13%;
+        border-style: none;
+        margin-left: 0cm;
+        margin-right: 0cm;
+        text-align: center;
+    }
+
+    #navbar li:hover
+    {
+        background-color: #444444;
+    }
+
+    #navbar a
+    {
+        display: block;
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 14pt;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+
+    @media all and (max-width: 1400px)
+    {
+        h1
+        {
+            font-size: 4.2vw;
+        }
+
+        h2
+        {
+            font-size: 3vw;
+        }
+
+        h3
+        {
+            font-size: 2.3vw;
+        }
+
+        p
+        {
+            font-size: 1.7vw;
+        }
+
+        #navbar a
+        {
+            font-size: 1.3vw;
+        }
+    }
+
