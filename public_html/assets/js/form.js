@@ -27,83 +27,17 @@
         }
     }
 
-    function matchRegEx(regEx, field)
+    function matchRegEx(regEx, fieldValue)
     {
-        return field.value.match(regEx) != null;
+        return fieldValue.match(regEx) != null;
     }
 
-    function validateForm(formId)
+    function submitForm(formId)
     {
         // Retrieve the form
         var form = document.getElementById('jmlForm');
 
-        // Store if form is valid
-        var formValid = true;
-
-        // Get Input, Select and Text Area elements
-        var inputEls = document.querySelectorAll('input, select, textarea');
-
-        // A loop that checks every input field in the current tab
-        for(i = 0; i < inputEls.length; i++)
-        {
-            // Initialise check variables
-            var chkRequired = true;
-            var chkEmail = true;
-
-            // Initialise valid variable (all checks must pass)
-            var inputValid = false;
-
-            // Store current element
-            var inputEl = inputEls[i];
-
-            // Check REQUIRED
-            if(inputEl.required && inputEl.value == "")
-            {
-                // Flag input as invalid
-                chkRequired = false;
-            }
-
-            // Check EMAIL
-            if(inputEl.type == "email" && inputEl.value != "")
-            {
-                // Check if email address matches RegEx
-                chkEmail = matchRegEx(regExEmail, inputEl);
-
-                if(!chkEmail)
-                {
-                    // Find the label of the field
-                    label = inputEl.previousElementSibling;
-
-                    if(label == null)
-                    {
-                        message  = "Email is invalid. Please check and try again.\n\n";
-                        message += inputEl.value;
-                    }
-                    else
-                    {
-                        message = label.innerText;
-                        message = message.replace(" *", "");
-                        message += " is invalid. Please check and try again.\n\n";
-                        message += inputEl.value;
-                    }
-
-                    alert(message);
-                }
-            }
-
-            // Flag input as valid/invalid
-            inputValid = chkRequired && chkEmail;
-
-            // Flag form as valid/invalid
-            formValid = formValid && inputValid;
-
-            // Change background colour of invalid inputs by giving "invalid" class
-            if(!inputValid)
-            {
-                removeClass(inputEl, classChanged)
-                addClass(inputEl, classInvalid)
-            }
-        }
+        var formValid = validateForm();
 
         // If the form is valid, ask user if they wish to proceed with submission
         if(formValid)
@@ -118,8 +52,112 @@
                 form.submit();
             }
         }
+    }
+
+    function checkRequired(inputEl)
+    {
+        return inputEl.required && inputEl.value == "" ? false : true;
+    }
+
+    function checkEmail(inputEl)
+    {
+        emailValid = false;
+
+        if(inputEl.type == "email" && inputEl.value != "")
+        {
+            emailValid = matchRegEx(regExEmail, inputEl.value);
+        }
         else
         {
-
+            emailValid = true;
         }
+
+        if(!emailValid)
+        {
+            emailError(inputEl);
+        }
+
+        return emailValid;
+    }
+
+    function emailError(inputEl)
+    {
+        // Find the label of the field
+        var label = inputEl.previousElementSibling;
+
+        // Define error message
+        var message  = " is invalid. Please check and try again.";
+
+        // Check label
+        if(label == null)
+        {
+            message = "Email" + message;
+        }
+        else
+        {
+            message = label.innerText.replace(" *", "") + message;
+        }
+
+        // Append input value to error message
+        message += "\n\n" + inputEl.value;
+
+        alert(message);
+    }
+
+    function validateForm()
+    {
+        // RETURN VALUE: Store if form is valid
+        var formValid = true;
+
+        // Get Input, Select and Text Area elements
+        var inputEls = document.querySelectorAll('input, select, textarea');
+
+        // A loop that checks every input field in the current tab
+        for(i = 0; i < inputEls.length; i++)
+        {
+            // Store current element
+            var inputEl = inputEls[i];
+
+            // Flag input as valid/invalid
+            var inputValid = checkArrayValues(inputEl);
+
+            // Flag form as valid/invalid
+            formValid = formValid && inputValid;
+        }
+
+        return formValid;
+    }
+
+    function performChecks(inputEl)
+    {
+        var checks = [];
+
+        // Perform checks
+        checks[0] = checkRequired(inputEl);
+        checks[1] = checkEmail(inputEl);
+
+        return checks;
+    }
+
+    function checkArray(check)
+    {
+        return check == true;
+    }
+
+    function checkArrayValues(inputEl)
+    {
+        // Return array of booleans
+        var checks = performChecks(inputEl);
+
+        // Check each element is true
+        var inputValid = checks.every(checkArray);
+
+        // Change background colour of invalid inputs by giving "invalid" class
+        if(!inputValid)
+        {
+            removeClass(inputEl, classChanged)
+            addClass(inputEl, classInvalid)
+        }
+
+        return inputValid;
     }
