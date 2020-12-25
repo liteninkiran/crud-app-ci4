@@ -19,32 +19,122 @@ use CodeIgniter\Controller;
 class BaseController extends Controller
 {
 
-	/**
-	 * An array of helpers to be loaded automatically upon
-	 * class instantiation. These helpers will be available
-	 * to all other controllers that extend BaseController.
-	 *
-	 * @var array
-	 */
-	protected $helpers = [];
+    /**
+     * An array of helpers to be loaded automatically upon
+     * class instantiation. These helpers will be available
+     * to all other controllers that extend BaseController.
+     *
+     * @var array
+     */
+    protected $helpers = [];
 
-	/**
-	 * Constructor.
-	 */
-	public function initController(\CodeIgniter\HTTP\RequestInterface $request, \CodeIgniter\HTTP\ResponseInterface $response, \Psr\Log\LoggerInterface $logger)
-	{
-		// Do Not Edit This Line
-		parent::initController($request, $response, $logger);
+    /**
+     * Constructor.
+     */
+    public function initController(\CodeIgniter\HTTP\RequestInterface $request, \CodeIgniter\HTTP\ResponseInterface $response, \Psr\Log\LoggerInterface $logger)
+    {
+        // Do Not Edit This Line
+        parent::initController($request, $response, $logger);
 
-		//--------------------------------------------------------------------
-		// Preload any models, libraries, etc, here.
-		//--------------------------------------------------------------------
-		// E.g.:
-		// $this->session = \Config\Services::session();
-	}
+        //--------------------------------------------------------------------
+        // Preload any models, libraries, etc, here.
+        //--------------------------------------------------------------------
+        // E.g.:
+        // $this->session = \Config\Services::session();
+    }
 
     protected function containsOnlyNull($input)
     {
         return empty(array_filter($input, function ($a) { return $a !== null;}));
+    }
+
+    protected function loadMainView($model, $orderBy, $viewName, $objectName = 'object')
+    {
+        // Return all records
+        $objects = $model->orderBy($orderBy)->findAll();
+
+        // Store in data array
+        $data[$objectName] = $objects;
+
+        // Load the view
+        echo view('template/header');
+        echo view($viewName, $data);
+        echo view('template/footer');
+    }
+
+    protected function loadAddView($viewName, $data = [])
+    {
+        echo view('template/header');
+        echo view($viewName, $data);
+        echo view('template/footer_form');
+    }
+
+    protected function loadEditView($model, $id, $viewName, $objectName = 'object')
+    {
+        // Return the record
+        $object = $model->find($id);
+
+        // Store in data array
+        $data[$objectName] = $object;
+
+        $this->loadAddView($viewName, $data);
+    }
+
+    protected function checkVar($varName)
+    {
+        $var = $this->request->getVar('application') == null ? false : true;
+
+        if(!$var)
+        {
+            $this->loadUnauthorisedView();
+        }
+
+        return $var;
+    }
+
+    protected function loadUnauthorisedView()
+    {
+        echo view('template/header');
+        echo view('unauthorised');
+        echo view('template/footer');
+
+        exit();
+    }
+
+    protected function saveRecord($model, $formData, $redirect = 'Home', $fieldName = null, $fieldRules = null)
+    {
+        // Add validation if required
+        if($fieldName && $fieldRules)
+        {
+            $model->setValidationRule($fieldName, $fieldRules);
+        }
+
+        // Insert the record, return the ID
+        $id = $model->save($formData);
+
+        // If we git an ID back, redirect to main view
+        if($id)
+        {
+            return $this->response->redirect(site_url($redirect));
+        }
+        else
+        {
+            // Load the Model's errors
+            $data['errors'] = $model->errors();
+
+            // Load the form data
+            $data['formData'] = $formData;
+
+            // Load the errors view
+            echo view('template/header');
+            echo view('db_error', $data);
+            echo view('template/footer');
+        }
+    }
+
+    protected function deleteRecord($model, $pk, $id, $redirect = 'Home')
+    {
+        $model->where($pk, $id)->delete();
+        return $this->response->redirect(site_url($redirect));
     }
 }

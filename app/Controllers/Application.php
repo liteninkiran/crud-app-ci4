@@ -6,137 +6,73 @@
 
     class Application extends BaseController
     {
+
         // Show Applications list
         public function index()
         {
             // Create a new Application model
-            $appModel = new Application_Model();
+            $model = new Application_Model();
+            $orderBy = 'application ASC';
+            $viewName = 'application/application_view';
+            $objectName = 'application';
 
-            // Return all Applications
-            $apps = $appModel->orderBy('application', 'ASC')->findAll();
-
-            // Store in data array
-            $data['application'] = $apps;
-
-            // Load the view
-            echo view('template/header');
-            echo view('application/application_view', $data);
-            echo view('template/footer');
+            $this->loadMainView($model, $orderBy, $viewName, $objectName);
         }
 
         // Add Application form
         public function create()
         {
-            echo view('template/header');
-            echo view('application/add_application');
-            echo view('template/footer_form');
+            $this->loadAddView('application/add_application');
         }
 
         // Edit Application form
         public function edit($id)
         {
             // Create a new Application model
-            $appModel = new Application_Model();
+            $model = new Application_Model();
+            $viewName = 'application/add_application';
+            $objectName = 'application';
 
-            // Return the Applications
-            $app = $appModel->find($id);
-
-            // Store in data array
-            $data['application'] = $app;
-
-            echo view('template/header');
-            echo view('application/add_application', $data);
-            echo view('template/footer_form');
+            $this->loadEditView($model, $id, $viewName, $objectName);
         }
 
-        // Insert data
         public function store()
         {
-            // Retrieve the form data
-            $formData = $this->getData(true);
+            $formData = $this->getData();
+            $model = new Application_Model();
+            $redirect = 'Application';
+            $fieldName = 'application';
+            $fieldRules = 'is_unique[application.application]';
 
-            // Create a Model
-            $appModel = new Application_Model();
-
-            // Insert the record, return the ID
-            $id = $appModel->insert($formData);
-
-            // If we git an ID back, redirect to main view
-            if($id)
-            {
-                return $this->response->redirect(site_url('application'));
-            }
-            else
-            {
-                // Load the Model's errors
-                $data['errors'] = $appModel->errors();
-
-                // Load the form data
-                $data['formData'] = $formData;
-
-                // Load the errors view
-                echo view('template/header');
-                echo view('db_error', $data);
-                echo view('template/footer');
-            }
+            $this->saveRecord($model, $formData, $redirect, $fieldName, $fieldRules);
         }
 
         // Delete Application
-        public function delete($id = null)
+        public function delete($id)
         {
-            $appModel = new Application_Model();
-            $appModel->where('id', $id)->delete($id);
+            $model = new Application_Model();
 
-            return $this->response->redirect(site_url('application'));
+            $this->deleteRecord($model, 'id', $id, 'Application');
         }
 
         // Update Application
         public function update($id)
         {
-            $formData = $this->getData();
-
-            $appModel = new Application_Model();
-
+            $formData = $this->getData($id);
+            $model = new Application_Model();
+            $redirect = 'Application';
             $fieldName = 'application';
             $fieldRules = 'is_unique[application.application,id,' . $id . ']';
 
-            $appModel->setValidationRule($fieldName, $fieldRules);
-
-            // Return the Applications
-            $app = $appModel->find($id);
-
-            $appModel->update($id, $formData);
-
-            if($appModel->errors())
-            {
-                // Load the Model's errors
-                $data['errors'] = $appModel->errors();
-
-                // Load the form data
-                $data['formData'] = $formData;
-
-                // Load the errors view
-                echo view('template/header');
-                echo view('db_error', $data);
-                echo view('template/footer');
-            }
-            else
-            {
-                return $this->response->redirect(site_url('application'));
-            }
+            $this->saveRecord($model, $formData, $redirect, $fieldName, $fieldRules);
         }
 
-        private function getData($insert = false)
+        private function getData($id = null)
         {
-            if($this->request->getVar('application') == null)
-            {
-                echo view('template/header');
-                echo view('unauthorised');
-                echo view('template/footer');
+            // Check if post variable exists
+            $this->checkVar('application');
 
-                exit();
-            }
-
+            // Store data from post
             $data =
             [
                 'application'             => $this->request->getVar('application'),
@@ -145,11 +81,14 @@
                 'update_user'             => get_current_user()
             ];
 
-            if($insert)
+            // If we got passed an ID, include it and the create user
+            if($id)
             {
+                $data['id'] = $id;
                 $data['create_user'] = get_current_user();
             }
 
+            // Return the data
             return $data;            
         }
 
