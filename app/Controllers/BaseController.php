@@ -26,7 +26,7 @@ class BaseController extends Controller
      *
      * @var array
      */
-    protected $helpers = [];
+    protected $helpers = ['site_helper', 'form'];
 
     /**
      * Constructor.
@@ -157,4 +157,17 @@ class BaseController extends Controller
     {
         return $this->request->getVar($varName) == '' ? null: $this->request->getVar($varName);
     }
+
+    protected function getList($model, $fieldName, $orderBy = 'id ASC', $placeHolder = 'Select from dropdown')
+    {
+        // Return all records
+        $objects = $model->orderBy($orderBy)->findAll();
+
+        // Convert to array
+        $listArray = build_array_from_object($objects, $fieldName, true, $placeHolder);
+
+        return $listArray;
+    }
+
+
 }

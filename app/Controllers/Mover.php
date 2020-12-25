@@ -3,6 +3,7 @@
     namespace App\Controllers;
 
     use App\Models\Mover_Model;
+    use App\Models\Department_Model;
 
     class Mover extends BaseController
     {
@@ -17,7 +18,10 @@
         // Add form
         public function create()
         {
-            $this->loadAddView('mover/add_mover');
+            $model = new Department_Model();
+            $list = $this->getList($model, "department", "department ASC", "Select mover's new department");
+            $data['departmentNew'] = $list;
+            $this->loadAddView('mover/add_mover', $data);
         }
 
         // Edit form

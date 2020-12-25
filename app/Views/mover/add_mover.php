@@ -20,10 +20,17 @@
             <form method="post" id="jmlForm" action="<?= $actionLink; ?>">
 
                 <div class="jml-tab" id="mover-tab">
-                    <h2>About the Mover</h2>
+                    <h2>About the Requester</h2>
 <?php
                     include('form-controls/req_full_name.php');
                     include('form-controls/req_email.php');
+?>
+                    <h2>About the Employee</h2>
+<?php
+                    include('form-controls/employee_full_name.php');
+                    include('form-controls/employee_staff_num.php');
+                    include('form-controls/employee_job_title.php');
+                    include('form-controls/department_new_id.php');
 ?>
                 </div>
  
