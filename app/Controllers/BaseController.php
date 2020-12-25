@@ -153,4 +153,8 @@ class BaseController extends Controller
         return $data;
     }
 
+    protected function getVarNull($varName)
+    {
+        return $this->request->getVar($varName) == '' ? null: $this->request->getVar($varName);
+    }
 }

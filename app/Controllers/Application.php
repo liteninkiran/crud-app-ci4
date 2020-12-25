@@ -61,9 +61,9 @@
             // Store data from post
             $data =
             [
-                'application'             => $this->request->getVar('application'),
-                'application_owner_name'  => $this->request->getVar('application-owner-name'),
-                'application_owner_email' => $this->request->getVar('application-owner-email'),
+                'application'             => $this->getVarNull('application'),
+                'application_owner_name'  => $this->getVarNull('application-owner-name'),
+                'application_owner_email' => $this->getVarNull('application-owner-email'),
                 'update_user'             => get_current_user()
             ];
 

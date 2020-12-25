@@ -61,8 +61,8 @@
             // Store data from post
             $data =
             [
-                'hardware'             => $this->request->getVar('hardware'),
-                'update_user'             => get_current_user()
+                'hardware'    => $this->getVarNull('hardware'),
+                'update_user' => get_current_user()
             ];
 
             $data = $this->parseId($id, $data);
