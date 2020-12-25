@@ -10,6 +10,7 @@
 
         $header = $mover->id ? 'Edit Mover' : 'Add New Mover';
 
+        $cancelLink = $_SERVER['HTTP_REFERER'] == null ? site_url('home') : $_SERVER['HTTP_REFERER'];
 ?>
 
         <div>
@@ -27,7 +28,7 @@
                 </div>
  
                 <div class="align-r">
-                    <a href="<?= site_url('mover'); ?>"><button type="button" id="jml-cancel" class="margin-r">CANCEL</button></a>
+                    <a href="<?= $cancelLink; ?>"><button type="button" id="jml-cancel" class="margin-r">CANCEL</button></a>
                     <button type="button" id="jml-submit" onclick="submitForm(this.parentElement.parentElement.id)" class="margin-t">SUBMIT</button>
                 </div>
 

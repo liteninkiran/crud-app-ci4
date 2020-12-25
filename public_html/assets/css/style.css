@@ -53,6 +53,8 @@
     #header-image
     {
         max-height: 80px;
+        display: block;
+        margin: auto;
     }
 
     /* FOOTER */

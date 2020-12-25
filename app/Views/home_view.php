@@ -12,8 +12,8 @@
                     </div>
 
                     <div class="column-3">
-                        <a href="<?php echo site_url(''); ?>"><img src="<?php echo site_url('assets/images/mover.jpg'); ?>" alt="Mover" class="icon"></a>
-                        <a href="<?php echo site_url(''); ?>" class="no-line"><h2>Mover</h2></a>
+                        <a href="<?php echo site_url('mover/create'); ?>"><img src="<?php echo site_url('assets/images/mover.jpg'); ?>" alt="Mover" class="icon"></a>
+                        <a href="<?php echo site_url('mover/create'); ?>" class="no-line"><h2>Mover</h2></a>
                         <p>An employee changing departments</p>
                     </div>
 
