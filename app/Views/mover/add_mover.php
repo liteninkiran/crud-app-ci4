@@ -19,17 +19,11 @@
             <form method="post" id="jmlForm" action="<?= $actionLink; ?>">
 
                 <div class="jml-tab" id="mover-tab">
-
-                    <div>
-                        <label>Requester Full Name *</label>
-                        <input type           = "text"
-                               name           = "req_full_name"
-                               placeholder    = "Enter the requester's full name"
-                               value          = "<?= $mover->req_full_name; ?>"
-                               oninput        = "changeMe(this)"
-                               required>
-                    </div>
-
+                    <h2>About the Mover</h2>
+<?php
+                    include('form-controls/req_full_name.php');
+                    include('form-controls/req_email.php');
+?>
                 </div>
  
                 <div class="align-r">

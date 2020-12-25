@@ -9,6 +9,7 @@
         if(is_array($errors))
         {
 ?>
+            <!-- ERRORS (ARRAY) -->
             <table>
                 <thead>
                     <tr>
@@ -20,34 +21,10 @@
 <?php
                     foreach($errors as $field => $message)
                     {
-    ?>
+?>
                         <tr>
                             <td><?= $field; ?></td>
                             <td><?= $message; ?></td>
-                        </tr>
-<?php
-                    }
-?>
-                </tbody>
-            </table>
-
-
-            <h1>Form Data</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Field</th>
-                        <th>Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-<?php
-                    foreach($formData as $field => $value)
-                    {
-?>
-                        <tr>
-                            <td><?= $field; ?></td>
-                            <td><?= $value; ?></td>
                         </tr>
 <?php
                     }
@@ -58,8 +35,34 @@
         }
         else
         {
-            echo '<pre>' . var_export($errors, true) . '</pre>';
+            /* ERRORS (NOT ARRAY) */
+            echo '<p>' . $errors . '</p>';
         }
+?>
+        <!-- FORM DATA -->
+        <h1>Form Data</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+<?php
+                foreach($formData as $field => $value)
+                {
+?>
+                    <tr>
+                        <td><?= $field; ?></td>
+                        <td><?= $value; ?></td>
+                    </tr>
+<?php
+                }
+?>
+            </tbody>
+        </table>
+<?php
     }
     else
     {

@@ -56,6 +56,13 @@
         background-color: #ffdddd;
     }
 
+    #jmlForm h2
+    {
+        color: black;
+        margin-top: 1cm;
+        margin-bottom: 0.5cm;
+    }
+
     @media all and (max-width: 1400px)
     {
         label

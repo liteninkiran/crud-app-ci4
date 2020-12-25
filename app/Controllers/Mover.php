@@ -56,7 +56,7 @@
         private function getData($id = null)
         {
             // Check if post variable exists
-            $this->checkVar('mover');
+            $this->checkVar('req_full_name');
 
             // Store data from post
             $data =
