@@ -6,65 +6,51 @@
 
     class Application extends BaseController
     {
-
-        // Show Applications list
+        // Show list
         public function index()
         {
-            // Create a new Application model
             $model = new Application_Model();
-            $orderBy = 'application ASC';
-            $viewName = 'application/application_view';
-            $objectName = 'application';
 
-            $this->loadMainView($model, $orderBy, $viewName, $objectName);
+            $this->loadMainView($model, 'application ASC', 'application/application_view', 'application');
         }
 
-        // Add Application form
+        // Add form
         public function create()
         {
             $this->loadAddView('application/add_application');
         }
 
-        // Edit Application form
+        // Edit form
         public function edit($id)
         {
-            // Create a new Application model
             $model = new Application_Model();
-            $viewName = 'application/add_application';
-            $objectName = 'application';
 
-            $this->loadEditView($model, $id, $viewName, $objectName);
+            $this->loadEditView($model, $id, 'application/add_application', 'application');
         }
 
         public function store()
         {
             $formData = $this->getData();
             $model = new Application_Model();
-            $redirect = 'Application';
-            $fieldName = 'application';
-            $fieldRules = 'is_unique[application.application]';
 
-            $this->saveRecord($model, $formData, $redirect, $fieldName, $fieldRules);
+            $this->saveRecord($model, $formData, 'Application', 'application', 'is_unique[application.application]');
         }
 
-        // Delete Application
+        // Update record
+        public function update($id)
+        {
+            $formData = $this->getData($id);
+            $model = new Application_Model();
+
+            $this->saveRecord($model, $formData, 'Application', 'application', 'is_unique[application.application,id,' . $id . ']');
+        }
+
+        // Delete record
         public function delete($id)
         {
             $model = new Application_Model();
 
             $this->deleteRecord($model, 'id', $id, 'Application');
-        }
-
-        // Update Application
-        public function update($id)
-        {
-            $formData = $this->getData($id);
-            $model = new Application_Model();
-            $redirect = 'Application';
-            $fieldName = 'application';
-            $fieldRules = 'is_unique[application.application,id,' . $id . ']';
-
-            $this->saveRecord($model, $formData, $redirect, $fieldName, $fieldRules);
         }
 
         private function getData($id = null)
