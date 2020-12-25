@@ -48,6 +48,15 @@ class BaseController extends Controller
         return empty(array_filter($input, function ($a) { return $a !== null;}));
     }
 
+    protected function loadView($viewName, $data = [], $footer = 'footer_form')
+    {
+        $footer = 'template/' . $footer;
+
+        echo view('template/header');
+        echo view($viewName, $data);
+        echo view($footer);
+    }
+
     protected function loadMainView($model, $orderBy, $viewName, $objectName = 'object')
     {
         // Return all records
@@ -57,16 +66,12 @@ class BaseController extends Controller
         $data[$objectName] = $objects;
 
         // Load the view
-        echo view('template/header');
-        echo view($viewName, $data);
-        echo view('template/footer');
+        $this->loadView($viewName, $data, 'footer');
     }
 
     protected function loadAddView($viewName, $data = [])
     {
-        echo view('template/header');
-        echo view($viewName, $data);
-        echo view('template/footer_form');
+        $this->loadView($viewName, $data);
     }
 
     protected function loadEditView($model, $id, $viewName, $objectName = 'object')
@@ -82,7 +87,7 @@ class BaseController extends Controller
 
     protected function checkVar($varName)
     {
-        $var = $this->request->getVar('application') == null ? false : true;
+        $var = $this->request->getVar($varName) == null ? false : true;
 
         if(!$var)
         {
@@ -94,10 +99,7 @@ class BaseController extends Controller
 
     protected function loadUnauthorisedView()
     {
-        echo view('template/header');
-        echo view('unauthorised');
-        echo view('template/footer');
-
+        $this->loadView('unauthorised');
         exit();
     }
 
@@ -126,9 +128,7 @@ class BaseController extends Controller
             $data['formData'] = $formData;
 
             // Load the errors view
-            echo view('template/header');
-            echo view('db_error', $data);
-            echo view('template/footer');
+            $this->loadView('db_error', $data);
         }
     }
 
