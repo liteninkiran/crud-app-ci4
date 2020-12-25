@@ -33,7 +33,7 @@
             $formData = $this->getData();
             $model = new Hardware_Model();
 
-            $this->saveRecord($model, $formData, 'Hardware', 'hardware', 'is_unique[hardware.hardware]');
+            $this->saveRecord($model, $formData, 'hardware', 'hardware', 'is_unique[hardware.hardware]');
         }
 
         // Update record
@@ -42,7 +42,7 @@
             $formData = $this->getData($id);
             $model = new Hardware_Model();
 
-            $this->saveRecord($model, $formData, 'Hardware', 'hardware', 'is_unique[hardware.hardware,id,' . $id . ']');
+            $this->saveRecord($model, $formData, 'hardware', 'hardware', 'is_unique[hardware.hardware,id,' . $id . ']');
         }
 
         // Delete record
@@ -50,7 +50,7 @@
         {
             $model = new Hardware_Model();
 
-            $this->deleteRecord($model, 'id', $id, 'Hardware');
+            $this->deleteRecord($model, 'id', $id, 'hardware');
         }
 
         private function getData($id = null)
@@ -65,12 +65,7 @@
                 'update_user'             => get_current_user()
             ];
 
-            // If we got passed an ID, include it and the create user
-            if($id)
-            {
-                $data['id'] = $id;
-                $data['create_user'] = get_current_user();
-            }
+            $data = $this->parseId($id, $data);
 
             // Return the data
             return $data;            

@@ -33,7 +33,7 @@
             $formData = $this->getData();
             $model = new Application_Model();
 
-            $this->saveRecord($model, $formData, 'Application', 'application', 'is_unique[application.application]');
+            $this->saveRecord($model, $formData, 'application', 'application', 'is_unique[application.application]');
         }
 
         // Update record
@@ -42,7 +42,7 @@
             $formData = $this->getData($id);
             $model = new Application_Model();
 
-            $this->saveRecord($model, $formData, 'Application', 'application', 'is_unique[application.application,id,' . $id . ']');
+            $this->saveRecord($model, $formData, 'application', 'application', 'is_unique[application.application,id,' . $id . ']');
         }
 
         // Delete record
@@ -50,7 +50,7 @@
         {
             $model = new Application_Model();
 
-            $this->deleteRecord($model, 'id', $id, 'Application');
+            $this->deleteRecord($model, 'id', $id, 'application');
         }
 
         private function getData($id = null)
@@ -67,12 +67,7 @@
                 'update_user'             => get_current_user()
             ];
 
-            // If we got passed an ID, include it and the create user
-            if($id)
-            {
-                $data['id'] = $id;
-                $data['create_user'] = get_current_user();
-            }
+            $data = $this->parseId($id, $data);
 
             // Return the data
             return $data;            

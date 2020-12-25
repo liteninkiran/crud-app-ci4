@@ -137,4 +137,20 @@ class BaseController extends Controller
         $model->where($pk, $id)->delete();
         return $this->response->redirect(site_url($redirect));
     }
+
+    protected function parseId($id, $data)
+    {
+        // Include either the ID or the create user
+        if($id)
+        {
+            $data['id'] = $id;
+        }
+        else
+        {
+            $data['create_user'] = get_current_user();
+        }
+
+        return $data;
+    }
+
 }

@@ -33,7 +33,7 @@
             $formData = $this->getData();
             $model = new Department_Model();
 
-            $this->saveRecord($model, $formData, 'Department', 'department', 'is_unique[department.department]');
+            $this->saveRecord($model, $formData, 'department', 'department', 'is_unique[department.department]');
         }
 
         // Update record
@@ -42,7 +42,7 @@
             $formData = $this->getData($id);
             $model = new Department_Model();
 
-            $this->saveRecord($model, $formData, 'Department', 'department', 'is_unique[department.department,id,' . $id . ']');
+            $this->saveRecord($model, $formData, 'department', 'department', 'is_unique[department.department,id,' . $id . ']');
         }
 
         // Delete record
@@ -50,7 +50,7 @@
         {
             $model = new Department_Model();
 
-            $this->deleteRecord($model, 'id', $id, 'Department');
+            $this->deleteRecord($model, 'id', $id, 'department');
         }
 
         private function getData($id = null)
@@ -65,12 +65,7 @@
                 'update_user'             => get_current_user()
             ];
 
-            // If we got passed an ID, include it and the create user
-            if($id)
-            {
-                $data['id'] = $id;
-                $data['create_user'] = get_current_user();
-            }
+            $data = $this->parseId($id, $data);
 
             // Return the data
             return $data;            
