@@ -114,7 +114,7 @@ class BaseController extends Controller
         // Insert the record, return the ID
         $id = $model->save($formData);
 
-        // If we git an ID back, redirect to main view
+        // If we got an ID back, redirect to main view
         if($id)
         {
             return $this->response->redirect(site_url($redirect));
