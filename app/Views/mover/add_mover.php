@@ -32,6 +32,13 @@
                     include('form-controls/employee_job_title.php');
                     include('form-controls/department_new_id.php');
                     include('form-controls/department_prev_id.php');
+                    include('form-controls/new_manager_full_name.php');
+                    include('form-controls/prev_manager_full_name.php');
+?>
+                    <h2>About the Move</h2>
+<?php
+                    include('form-controls/move_date.php');
+                    include('form-controls/employment_type.php');
 ?>
                 </div>
  

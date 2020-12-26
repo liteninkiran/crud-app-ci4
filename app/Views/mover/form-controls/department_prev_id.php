@@ -3,7 +3,7 @@
         [
             'id'       => 'department_prev_id',
             'required' => 'required',
-            'oninput'  => 'resetClass(this)'
+            'oninput'  => 'changeMe(this)'
         ];
 ?>
 

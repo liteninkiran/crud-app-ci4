@@ -1,8 +1,9 @@
 
                     <div>
-                        <label>Requester Email Address *</label>
-                        <input type           = "email"
+                        <label for            = "req_email">Requester Email Address *</label>
+                        <input id             = "req_email"
                                name           = "req_email"
+                               type           = "email"
                                placeholder    = "Enter the requester's email address"
                                value          = "<?= $mover->req_email; ?>"
                                oninput        = "changeMe(this)"
