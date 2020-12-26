@@ -154,7 +154,7 @@
         ,`leave_date` date NOT NULL
         ,`employee_staff_num` varchar(10) NOT NULL
         ,`employee_full_name` varchar(255) NOT NULL
-        ,`employee_job_title` varchar(255) NULL
+        ,`employee_job_title` varchar(255) NOT NULL
         ,`department_id` int(11) NOT NULL
         ,`manager_full_name` varchar(255) NOT NULL
         ,`additional_requirements` text DEFAULT NULL

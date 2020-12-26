@@ -20,7 +20,9 @@
         [
             'id',
             'mover_id',
-            'hardware_id'
+            'hardware_id',
+            'create_user',
+            'update_user'
         ];
     }
 ?>

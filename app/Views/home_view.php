@@ -18,8 +18,8 @@
                     </div>
 
                     <div class="column-3">
-                        <a href="<?php echo site_url(''); ?>"><img src="<?php echo site_url('assets/images/leaver.jpg'); ?>" alt="Leaver" class="icon"></a>
-                        <a href="<?php echo site_url(''); ?>" class="no-line"><h2>Leaver</h2></a>
+                        <a href="<?php echo site_url('leaver/create'); ?>"><img src="<?php echo site_url('assets/images/leaver.jpg'); ?>" alt="Leaver" class="icon"></a>
+                        <a href="<?php echo site_url('leaver/create'); ?>" class="no-line"><h2>Leaver</h2></a>
                         <p>An employee leaving the company</p>
                     </div>
 

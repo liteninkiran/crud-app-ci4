@@ -4,9 +4,9 @@
 
     use CodeIgniter\Model;
 
-    class Mover_Application_MTM_Model extends Model
+    class Leaver_Hardware_MTM_Model extends Model
     {
-        protected $table         = 'mover_app_mtm';
+        protected $table         = 'leaver_hdw_mtm';
         protected $primaryKey    = 'id';
 
         protected $returnType    = 'object';
@@ -19,8 +19,8 @@
         protected $allowedFields =
         [
             'id',
-            'mover_id',
-            'application_id',
+            'leaver_id',
+            'hardware_id',
             'create_user',
             'update_user'
         ];
