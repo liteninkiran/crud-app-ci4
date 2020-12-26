@@ -224,27 +224,31 @@
         return inputValid;
     }
 
-    function selectAll()
-    {
-
-    }
-
-
-/*
-    function selectAll(name, id, getEmail = false)
+    function selectAll(name)
     {
         // Retrieve checkboxes by name
         var checkBoxes = document.getElementsByName(name);
+
+        // Variable to store object during for loops
+        var checkBox;
+
+        // Variable to denote if boxes will be selected or de-selected
         var select = false;
+
+        // Loop counter
+        var i;
 
         // If all are selected we will de-select all
         for(i = 0; i < checkBoxes.length; i++)
         {
+            // Store checkbox
+            checkBox = checkBoxes[i];
+
             // Ensure we are only looking at checkboxes
-            if(checkBoxes[i].type == "checkbox")
+            if(checkBox.type == "checkbox")
             {
                 // If one is de-selected, we select all
-                if(!checkBoxes[i].checked)
+                if(!checkBox.checked)
                 {
                     select = true;
                     break;
@@ -255,18 +259,14 @@
         // Loop through array
         for(i = 0; i < checkBoxes.length; i++)
         {
+            checkBox = checkBoxes[i];
+
             // Ensure we are only looking at checkboxes
-            if(checkBoxes[i].type == "checkbox")
+            if(checkBox.type == "checkbox")
             {
                 // Select / de-select all boxes
-                checkBoxes[i].checked = select;
+                checkBox.checked = select;
             }
         }
 
-        // Clear the invalid class
-        if(select)
-        {
-            clearInvalid(name + '-div');
-        }
     }
-*/

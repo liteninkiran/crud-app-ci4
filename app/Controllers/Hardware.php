@@ -30,7 +30,7 @@
 
         public function store()
         {
-            $formData = $this->getData();
+            $formData = $this->getPostData();
             $model = new Hardware_Model();
 
             $this->saveRecord($model, $formData, 'hardware', 'hardware', 'is_unique[hardware.hardware]');
@@ -39,7 +39,7 @@
         // Update record
         public function update($id)
         {
-            $formData = $this->getData($id);
+            $formData = $this->getPostData($id);
             $model = new Hardware_Model();
 
             $this->saveRecord($model, $formData, 'hardware', 'hardware', 'is_unique[hardware.hardware,id,' . $id . ']');
@@ -53,7 +53,7 @@
             $this->deleteRecord($model, 'id', $id, 'hardware');
         }
 
-        private function getData($id = null)
+        private function getPostData($id = null)
         {
             // Check if post variable exists
             $this->checkVar('hardware');

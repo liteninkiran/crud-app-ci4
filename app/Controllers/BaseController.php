@@ -177,4 +177,18 @@ class BaseController extends Controller
         }
     }
 
+    protected function getMtmList($model, $id, $whereColumn, $returnColumn)
+    {
+        // Return all Hardware records for the Mover
+        $mtm = $model->where($whereColumn, $id)->findColumn($returnColumn);
+
+        // Return empty array if there are no records
+        if($mtm == null)
+        {
+            $mtm = array();
+        }
+
+        return $mtm;
+    }
+
 }

@@ -5,6 +5,9 @@
     use App\Models\Mover_Model;
     use App\Models\Department_Model;
     use App\Models\Application_Model;
+    use App\Models\Hardware_Model;
+    use App\Models\Mover_Application_MTM_Model;
+    use App\Models\Mover_Hardware_MTM_Model;
 
     class Mover extends BaseController
     {
@@ -19,14 +22,14 @@
         // Add form
         public function create()
         {
-            $data = $this->getData();
+            $data = $this->getViewData();
             $this->loadAddView('mover/add_mover', $data);
         }
 
         // Edit form
         public function edit($id)
         {
-            $data = $this->getData();
+            $data = $this->getViewData($id);
             $model = new Mover_Model();
 
             $this->loadEditView($model, $id, 'mover/add_mover', 'mover', $data);
@@ -34,7 +37,7 @@
 
         public function store()
         {
-            $formData = $this->getFormData();
+            $formData = $this->getPostData();
             $model = new Mover_Model();
 
             $this->saveRecord($model, $formData, 'mover', 'mover', 'is_unique[mover.mover]');
@@ -43,7 +46,7 @@
         // Update record
         public function update($id)
         {
-            $formData = $this->getFormData($id);
+            $formData = $this->getPostData($id);
             $model = new Mover_Model();
 
             $this->saveRecord($model, $formData, 'mover', 'mover', 'is_unique[mover.mover,id,' . $id . ']');
@@ -57,7 +60,7 @@
             $this->deleteRecord($model, 'id', $id, 'mover');
         }
 
-        private function getFormData($id = null)
+        private function getPostData($id = null)
         {
             // Check if post variable exists
             $this->checkVar('req_full_name');
@@ -90,34 +93,30 @@
             return $data;            
         }
 
-        private function getData()
+        private function getViewData($id = null)
         {
-            $model = new Application_Model;
+            // Create regular models
+            $appModel = new Application_Model;
+            $depModel = new Department_Model;
+            $hdwModel = new Hardware_Model;
 
-            $data['departmentNew'] = $this->getDepartmentList(true);
-            $data['departmentPre'] = $this->getDepartmentList(false);
-            $data['application'] = $this->getList($model, "application", "application ASC", null);
+            // Create MTM models
+            $appMtmModel = new Mover_Application_MTM_Model();
+            $hdwMtmModel = new Mover_Hardware_MTM_Model();
+
+            // For drop-down menus
+            $data['departmentNew'] = $this->getList($depModel, "department", "department ASC", "Select mover's new department");
+            $data['departmentPre'] = $this->getList($depModel, "department", "department ASC", "Select mover's previous department");
+
+            // For checkbox groups
+            $data['application'] = $this->getList($appModel, "application", "application ASC", null);
+            $data['hardware'] = $this->getList($hdwModel, "hardware", "hardware ASC", null);
+
+            // For checkbox groups (current values)
+            $data['hardwareMtm'] = $this->getMtmList($hdwMtmModel, $id, 'mover_id', 'hardware_id');
+            $data['applicationMtm'] = $this->getMtmList($appMtmModel, $id, 'mover_id', 'application_id');
 
             return $data;
         }
-
-        private function getDepartmentList($new = true)
-        {
-            $model = new Department_Model();
-
-            if($new)
-            {
-                $placeHolder = "Select mover's new department";
-            }
-            else
-            {
-                $placeHolder = "Select mover's previous department";
-            }
-
-            $list = $this->getList($model, "department", "department ASC", $placeHolder);
-
-            return $list;
-        }
-
     }
 ?>

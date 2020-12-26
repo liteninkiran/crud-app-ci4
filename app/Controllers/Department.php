@@ -30,7 +30,7 @@
 
         public function store()
         {
-            $formData = $this->getData();
+            $formData = $this->getPostData();
             $model = new Department_Model();
 
             $this->saveRecord($model, $formData, 'department', 'department', 'is_unique[department.department]');
@@ -39,7 +39,7 @@
         // Update record
         public function update($id)
         {
-            $formData = $this->getData($id);
+            $formData = $this->getPostData($id);
             $model = new Department_Model();
 
             $this->saveRecord($model, $formData, 'department', 'department', 'is_unique[department.department,id,' . $id . ']');
@@ -53,7 +53,7 @@
             $this->deleteRecord($model, 'id', $id, 'department');
         }
 
-        private function getData($id = null)
+        private function getPostData($id = null)
         {
             // Check if post variable exists
             $this->checkVar('department');
