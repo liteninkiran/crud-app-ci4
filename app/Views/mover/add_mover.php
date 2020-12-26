@@ -39,6 +39,7 @@
 <?php
                     include('form-controls/move_date.php');
                     include('form-controls/employment_type.php');
+                    include('form-controls/contract_end_date.php');
 ?>
                 </div>
  

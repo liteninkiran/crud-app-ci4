@@ -5,9 +5,36 @@
     // REGEX for email
     const regExEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
-    function hideElement()
+    // When we load the page, all controls that are conditionally visible must be checked to see if they need to be hidden or shown
+    forceOnChange();
+
+    function forceOnChange()
     {
-        return;
+        var inputEls;
+        var inputEl;
+        var i;
+
+        inputEls = document.querySelectorAll('input, select, textarea')
+
+        for(i = 0; i < inputEls.length; i++)
+        {
+            inputEl = inputEls[i];
+
+            if(inputEl.onchange != null)
+            {
+                // Trigger the 'hideElement' function
+                inputEl.onchange();
+            }
+        }
+    }
+
+    function hideElement(id, element, stringCheck)
+    {
+        var div = document.getElementById(id + '_div');
+        var input = document.getElementById(id);
+
+        div.style.display = element.value == stringCheck ? 'block' : 'none';
+        id.required = true;
     }
 
     function changeMe(inputEl)
