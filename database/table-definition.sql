@@ -44,7 +44,7 @@
         ,`update_user` varchar(255) NOT NULL
         ,PRIMARY KEY (`id`)
         ,UNIQUE KEY `uc_application` (`application`)
-        ) ENGINE=InnoDB AUTO_INCREMENT=14;
+        ) ENGINE=InnoDB AUTO_INCREMENT=1;
 
     /*------------------------------------------
     --  DEPARTMENT - Create Table             --
@@ -60,7 +60,7 @@
         ,`update_user` varchar(255) NOT NULL
         ,PRIMARY KEY (`id`)
         ,UNIQUE KEY `uc_department` (`department`)
-        ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
     /*------------------------------------------
     --  HARDWARE - Create Table               --
@@ -76,7 +76,7 @@
         ,`update_user` varchar(255) NOT NULL
         ,PRIMARY KEY (`id`)
         ,UNIQUE KEY `uc_hardware` (`hardware`)
-        ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
     /*------------------------------------------
     --  MOVER - Create Table                  --

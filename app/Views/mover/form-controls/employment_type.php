@@ -8,10 +8,12 @@
 
         $extra =
         [
-            'id'       => 'employment_type',
-            'required' => 'required',
-            'oninput'  => 'changeMe(this)',
-            'onchange' => "hideElement('contract_end_date', this, 'Contract')"
+            'id'          => 'employment_type',
+            'required'    => 'required',
+            'oninput'     => 'changeMe(this)',
+            'onchange'    => "hideElement('contract_end_date', this, 'Contract')",
+            "onfocusin"   => "changeText(this, 'black')",
+            "onfocusout"  => "changeText(this)"
         ];
 
 ?>

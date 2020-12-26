@@ -4,6 +4,7 @@
 
     use App\Models\Mover_Model;
     use App\Models\Department_Model;
+    use App\Models\Application_Model;
 
     class Mover extends BaseController
     {
@@ -18,17 +19,14 @@
         // Add form
         public function create()
         {
-            $data['departmentNew'] = $this->getDepartmentList(true);
-            $data['departmentPre'] = $this->getDepartmentList(false);
+            $data = $this->getData();
             $this->loadAddView('mover/add_mover', $data);
         }
 
         // Edit form
         public function edit($id)
         {
-            $data['departmentNew'] = $this->getDepartmentList(true);
-            $data['departmentPre'] = $this->getDepartmentList(false);
-
+            $data = $this->getData();
             $model = new Mover_Model();
 
             $this->loadEditView($model, $id, 'mover/add_mover', 'mover', $data);
@@ -36,7 +34,7 @@
 
         public function store()
         {
-            $formData = $this->getData();
+            $formData = $this->getFormData();
             $model = new Mover_Model();
 
             $this->saveRecord($model, $formData, 'mover', 'mover', 'is_unique[mover.mover]');
@@ -45,7 +43,7 @@
         // Update record
         public function update($id)
         {
-            $formData = $this->getData($id);
+            $formData = $this->getFormData($id);
             $model = new Mover_Model();
 
             $this->saveRecord($model, $formData, 'mover', 'mover', 'is_unique[mover.mover,id,' . $id . ']');
@@ -59,7 +57,7 @@
             $this->deleteRecord($model, 'id', $id, 'mover');
         }
 
-        private function getData($id = null)
+        private function getFormData($id = null)
         {
             // Check if post variable exists
             $this->checkVar('req_full_name');
@@ -90,6 +88,17 @@
 
             // Return the data
             return $data;            
+        }
+
+        private function getData()
+        {
+            $model = new Application_Model;
+
+            $data['departmentNew'] = $this->getDepartmentList(true);
+            $data['departmentPre'] = $this->getDepartmentList(false);
+            $data['application'] = $this->getList($model, "application", "application ASC", null);
+
+            return $data;
         }
 
         private function getDepartmentList($new = true)

@@ -8,10 +8,12 @@
 
         $extra =
         [
-            'id'       => 'usb_usage',
-            'required' => 'required',
-            'oninput'  => 'changeMe(this)',
-            'onchange' => "hideElement('usb_usage_reason', this, '1')"
+            'id'          => 'usb_usage',
+            'required'    => 'required',
+            'oninput'     => 'changeMe(this)',
+            'onchange'    => "hideElement('usb_usage_reason', this, '1')",
+            "onfocusin"   => "changeText(this, 'black')",
+            "onfocusout"  => "changeText(this)"
         ];
 
 ?>

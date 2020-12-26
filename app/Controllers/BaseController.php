@@ -164,10 +164,17 @@ class BaseController extends Controller
         $objects = $model->orderBy($orderBy)->findAll();
 
         // Convert to array
-        $listArray = build_array_from_object($objects, $fieldName, true, $placeHolder);
+        $objectArray = build_array_from_object($objects, $fieldName, true, $placeHolder);
 
-        return $listArray;
+        if($placeHolder == null)
+        {
+            return $objects;
+
+        }
+        else
+        {
+            return $objectArray;
+        }
     }
-
 
 }

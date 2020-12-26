@@ -3,7 +3,10 @@
         [
             'id'       => 'department_prev_id',
             'required' => 'required',
-            'oninput'  => 'changeMe(this)'
+            "oninput"     => "changeMe(this)",
+            "onchange"    => "changeText(this)",
+            "onfocusin"   => "changeText(this, 'black')",
+            "onfocusout"  => "changeText(this)"
         ];
 ?>
 

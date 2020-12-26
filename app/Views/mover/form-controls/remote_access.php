@@ -8,9 +8,12 @@
 
         $extra =
         [
-            'id'       => 'remote_access',
-            'required' => 'required',
-            'oninput'  => 'changeMe(this)'
+            'id'          => 'remote_access',
+            'required'    => 'required',
+            'oninput'     => 'changeMe(this)',
+            'onchange'    => 'changeText(this)',
+            "onfocusin"   => "changeText(this, 'black')",
+            "onfocusout"  => "changeText(this)"
         ];
 
 ?>

@@ -36,6 +36,30 @@
 
         div.style.display = element.value == stringCheck ? 'block' : 'none';
         input.required = element.value == stringCheck;
+
+        if(element.type == "select-one")
+        {
+            changeText(element);
+        }
+    }
+
+    function changeText(inputEl, fontColor = null)
+    {
+        if(fontColor)
+        {
+            inputEl.style.color = fontColor;
+        }
+        else
+        {
+            if(inputEl.value == '')
+            {
+                inputEl.style.color = 'rgb(117, 117, 117)';
+            }
+            else
+            {
+                inputEl.style.color = 'black';
+            }
+        }
     }
 
     function changeMe(inputEl)
@@ -199,3 +223,50 @@
 
         return inputValid;
     }
+
+    function selectAll()
+    {
+
+    }
+
+
+/*
+    function selectAll(name, id, getEmail = false)
+    {
+        // Retrieve checkboxes by name
+        var checkBoxes = document.getElementsByName(name);
+        var select = false;
+
+        // If all are selected we will de-select all
+        for(i = 0; i < checkBoxes.length; i++)
+        {
+            // Ensure we are only looking at checkboxes
+            if(checkBoxes[i].type == "checkbox")
+            {
+                // If one is de-selected, we select all
+                if(!checkBoxes[i].checked)
+                {
+                    select = true;
+                    break;
+                }
+            }
+        }
+
+        // Loop through array
+        for(i = 0; i < checkBoxes.length; i++)
+        {
+            // Ensure we are only looking at checkboxes
+            if(checkBoxes[i].type == "checkbox")
+            {
+                // Select / de-select all boxes
+                checkBoxes[i].checked = select;
+            }
+        }
+
+        // Clear the invalid class
+        if(select)
+        {
+            clearInvalid(name + '-div');
+        }
+    }
+*/

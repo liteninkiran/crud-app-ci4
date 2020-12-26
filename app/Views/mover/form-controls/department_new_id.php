@@ -1,9 +1,12 @@
 <?php
         $extra =
         [
-            'id'       => 'department_new_id',
-            'required' => 'required',
-            'oninput'  => 'changeMe(this)'
+            "id"          => "department_new_id",
+            "required"    => "required",
+            "oninput"     => "changeMe(this)",
+            "onchange"    => "changeText(this)",
+            "onfocusin"   => "changeText(this, 'black')",
+            "onfocusout"  => "changeText(this)"
         ];
 ?>
 
