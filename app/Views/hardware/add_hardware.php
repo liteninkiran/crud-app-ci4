@@ -2,13 +2,13 @@
 <?php
 
         // Store link for form action
-        $insertLink = site_url('department/store');
-        $updateLink = site_url('department/update/') . $department->id;
+        $insertLink = site_url('hardware/store');
+        $updateLink = site_url('hardware/update/') . $hardware->id;
 
         // Store link for form action
-        $actionLink = $department->id ? $updateLink : $insertLink;
+        $actionLink = $hardware->id ? $updateLink : $insertLink;
 
-        $header = $department->id ? 'Edit Department' : 'Add New Department';
+        $header = $hardware->id ? 'Edit Hardware' : 'Add New Hardware';
 
         $cancelLink = $_SERVER['HTTP_REFERER'] == null ? site_url('home') : $_SERVER['HTTP_REFERER'];
 ?>
@@ -19,14 +19,14 @@
 
             <form method="post" id="jmlForm" action="<?= $actionLink; ?>">
 
-                <div class="jml-tab" id="department-tab">
+                <div class="jml-tab" id="hardware-tab">
 
                     <div>
-                        <label>Department *</label>
+                        <label>Hardware *</label>
                         <input type           = "text"
-                               name           = "department"
-                               placeholder    = "Enter the department name"
-                               value          = "<?= $department->department; ?>"
+                               name           = "hardware"
+                               placeholder    = "Enter the hardware name"
+                               value          = "<?= $hardware->hardware; ?>"
                                oninput        = "changeMe(this)"
                                required>
                     </div>

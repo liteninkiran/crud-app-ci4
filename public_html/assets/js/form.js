@@ -5,10 +5,72 @@
     // REGEX for email
     const regExEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
+    // When we load the page, all controls that are conditionally visible must be checked to see if they need to be hidden or shown
+    forceOnChange();
+
+    // Loop through all input, select and textarea elements and force the OnChange event
+    function forceOnChange()
+    {
+        var inputEls;
+        var inputEl;
+        var i;
+
+        inputEls = document.querySelectorAll('input, select, textarea')
+
+        for(i = 0; i < inputEls.length; i++)
+        {
+            inputEl = inputEls[i];
+
+            if(inputEl.onchange != null)
+            {
+                // Trigger the 'hideElement' function
+                inputEl.onchange();
+            }
+        }
+    }
+
+    function hideElement(id, element, stringCheck)
+    {
+        var div = document.getElementById(id + '_div');
+        var input = document.getElementById(id);
+
+        div.style.display = element.value == stringCheck ? 'block' : 'none';
+        input.required = element.value == stringCheck;
+
+        if(element.type == "select-one")
+        {
+            changeText(element);
+        }
+    }
+
+    function changeText(inputEl, fontColor = null)
+    {
+        if(fontColor)
+        {
+            inputEl.style.color = fontColor;
+        }
+        else
+        {
+            if(inputEl.value == '')
+            {
+                inputEl.style.color = 'rgb(117, 117, 117)';
+            }
+            else
+            {
+                inputEl.style.color = 'black';
+            }
+        }
+    }
+
     function changeMe(inputEl)
     {
-        removeClass(inputEl, classInvalid)
-        addClass(inputEl, classChanged)
+        removeClass(inputEl, classInvalid);
+        addClass(inputEl, classChanged);
+    }
+
+    function changeType(inputEl, typeName)
+    {
+        inputEl.type = typeName;
     }
 
     function addClass(inputEl, clsName)
@@ -160,4 +222,51 @@
         }
 
         return inputValid;
+    }
+
+    function selectAll(name)
+    {
+        // Retrieve checkboxes by name
+        var checkBoxes = document.getElementsByName(name);
+
+        // Variable to store object during for loops
+        var checkBox;
+
+        // Variable to denote if boxes will be selected or de-selected
+        var select = false;
+
+        // Loop counter
+        var i;
+
+        // If all are selected we will de-select all
+        for(i = 0; i < checkBoxes.length; i++)
+        {
+            // Store checkbox
+            checkBox = checkBoxes[i];
+
+            // Ensure we are only looking at checkboxes
+            if(checkBox.type == "checkbox")
+            {
+                // If one is de-selected, we select all
+                if(!checkBox.checked)
+                {
+                    select = true;
+                    break;
+                }
+            }
+        }
+
+        // Loop through array
+        for(i = 0; i < checkBoxes.length; i++)
+        {
+            checkBox = checkBoxes[i];
+
+            // Ensure we are only looking at checkboxes
+            if(checkBox.type == "checkbox")
+            {
+                // Select / de-select all boxes
+                checkBox.checked = select;
+            }
+        }
+
     }

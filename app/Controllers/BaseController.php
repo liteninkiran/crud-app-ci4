@@ -26,7 +26,7 @@ class BaseController extends Controller
      *
      * @var array
      */
-    protected $helpers = [];
+    protected $helpers = ['site_helper', 'form'];
 
     /**
      * Constructor.
@@ -74,7 +74,7 @@ class BaseController extends Controller
         $this->loadView($viewName, $data);
     }
 
-    protected function loadEditView($model, $id, $viewName, $objectName = 'object')
+    protected function loadEditView($model, $id, $viewName, $objectName = 'object', $data = [])
     {
         // Return the record
         $object = $model->find($id);
@@ -103,7 +103,7 @@ class BaseController extends Controller
         exit();
     }
 
-    protected function saveRecord($model, $formData, $redirect = 'Home', $fieldName = null, $fieldRules = null)
+    protected function saveRecord($model, $formData, $fieldName = null, $fieldRules = null)
     {
         // Add validation if required
         if($fieldName && $fieldRules)
@@ -115,11 +115,7 @@ class BaseController extends Controller
         $id = $model->save($formData);
 
         // If we got an ID back, redirect to main view
-        if($id)
-        {
-            return $this->response->redirect(site_url($redirect));
-        }
-        else
+        if(!$id)
         {
             // Load the Model's errors
             $data['errors'] = $model->errors();
@@ -130,6 +126,8 @@ class BaseController extends Controller
             // Load the errors view
             $this->loadView('db_error', $data);
         }
+
+        return $id;
     }
 
     protected function deleteRecord($model, $pk, $id, $redirect = 'Home')
@@ -137,4 +135,58 @@ class BaseController extends Controller
         $model->where($pk, $id)->delete();
         return $this->response->redirect(site_url($redirect));
     }
+
+    protected function parseId($id, $data)
+    {
+        // Include either the ID or the create user
+        if($id)
+        {
+            $data['id'] = $id;
+        }
+        else
+        {
+            $data['create_user'] = get_current_user();
+        }
+
+        return $data;
+    }
+
+    protected function getVarNull($varName)
+    {
+        return $this->request->getVar($varName) == '' ? null: $this->request->getVar($varName);
+    }
+
+    protected function getList($model, $fieldName, $orderBy = 'id ASC', $placeHolder = 'Select from dropdown')
+    {
+        // Return all records
+        $objects = $model->orderBy($orderBy)->findAll();
+
+        // Convert to array
+        $objectArray = build_array_from_object($objects, $fieldName, true, $placeHolder);
+
+        if($placeHolder == null)
+        {
+            return $objects;
+
+        }
+        else
+        {
+            return $objectArray;
+        }
+    }
+
+    protected function getMtmList($model, $id, $whereColumn, $returnColumn)
+    {
+        // Return all Hardware records for the Mover
+        $mtm = $model->where($whereColumn, $id)->findColumn($returnColumn);
+
+        // Return empty array if there are no records
+        if($mtm == null)
+        {
+            $mtm = array();
+        }
+
+        return $mtm;
+    }
+
 }

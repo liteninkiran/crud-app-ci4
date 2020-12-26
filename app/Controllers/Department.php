@@ -30,19 +30,29 @@
 
         public function store()
         {
-            $formData = $this->getData();
+            $formData = $this->getPostData();
             $model = new Department_Model();
 
-            $this->saveRecord($model, $formData, 'Department', 'department', 'is_unique[department.department]');
+            $id = $this->saveRecord($model, $formData, 'department', 'is_unique[department.department]');
+
+            if($id)
+            {
+                return $this->response->redirect(site_url('department'));
+            }
         }
 
         // Update record
         public function update($id)
         {
-            $formData = $this->getData($id);
+            $formData = $this->getPostData($id);
             $model = new Department_Model();
 
-            $this->saveRecord($model, $formData, 'Department', 'department', 'is_unique[department.department,id,' . $id . ']');
+            $id = $this->saveRecord($model, $formData, 'department', 'is_unique[department.department,id,' . $id . ']');
+
+            if($id)
+            {
+                return $this->response->redirect(site_url('department'));
+            }
         }
 
         // Delete record
@@ -50,10 +60,10 @@
         {
             $model = new Department_Model();
 
-            $this->deleteRecord($model, 'id', $id, 'Department');
+            $this->deleteRecord($model, 'id', $id, 'department');
         }
 
-        private function getData($id = null)
+        private function getPostData($id = null)
         {
             // Check if post variable exists
             $this->checkVar('department');
@@ -61,16 +71,11 @@
             // Store data from post
             $data =
             [
-                'department'             => $this->request->getVar('department'),
-                'update_user'             => get_current_user()
+                'department'  => $this->getVarNull('department'),
+                'update_user' => get_current_user()
             ];
 
-            // If we got passed an ID, include it and the create user
-            if($id)
-            {
-                $data['id'] = $id;
-                $data['create_user'] = get_current_user();
-            }
+            $data = $this->parseId($id, $data);
 
             // Return the data
             return $data;            

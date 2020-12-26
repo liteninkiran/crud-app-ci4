@@ -26,8 +26,8 @@
                         <thead>
                             <tr>
                                 <th>Application</th>
-                                <th>Application Owner</th>
-                                <th>Email</th>
+                                <th class="tbl-col-p20">Application Owner</th>
+                                <th class="tbl-col-p20">Email</th>
                                 <th class="tbl-col-100"></th>
                                 <th class="tbl-col-100"></th>
                             </tr>

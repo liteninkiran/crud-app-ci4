@@ -30,19 +30,29 @@
 
         public function store()
         {
-            $formData = $this->getData();
+            $formData = $this->getPostData();
             $model = new Application_Model();
 
-            $this->saveRecord($model, $formData, 'Application', 'application', 'is_unique[application.application]');
+            $id = $this->saveRecord($model, $formData, 'application', 'is_unique[application.application]');
+
+            if($id)
+            {
+                return $this->response->redirect(site_url('application'));
+            }
         }
 
         // Update record
         public function update($id)
         {
-            $formData = $this->getData($id);
+            $formData = $this->getPostData($id);
             $model = new Application_Model();
 
-            $this->saveRecord($model, $formData, 'Application', 'application', 'is_unique[application.application,id,' . $id . ']');
+            $id = $this->saveRecord($model, $formData, 'application', 'is_unique[application.application,id,' . $id . ']');
+
+            if($id)
+            {
+                return $this->response->redirect(site_url('application'));
+            }
         }
 
         // Delete record
@@ -50,10 +60,10 @@
         {
             $model = new Application_Model();
 
-            $this->deleteRecord($model, 'id', $id, 'Application');
+            $this->deleteRecord($model, 'id', $id, 'application');
         }
 
-        private function getData($id = null)
+        private function getPostData($id = null)
         {
             // Check if post variable exists
             $this->checkVar('application');
@@ -61,18 +71,13 @@
             // Store data from post
             $data =
             [
-                'application'             => $this->request->getVar('application'),
-                'application_owner_name'  => $this->request->getVar('application-owner-name'),
-                'application_owner_email' => $this->request->getVar('application-owner-email'),
+                'application'             => $this->getVarNull('application'),
+                'application_owner_name'  => $this->getVarNull('application-owner-name'),
+                'application_owner_email' => $this->getVarNull('application-owner-email'),
                 'update_user'             => get_current_user()
             ];
 
-            // If we got passed an ID, include it and the create user
-            if($id)
-            {
-                $data['id'] = $id;
-                $data['create_user'] = get_current_user();
-            }
+            $data = $this->parseId($id, $data);
 
             // Return the data
             return $data;            
