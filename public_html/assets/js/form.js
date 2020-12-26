@@ -6,7 +6,7 @@
     const regExEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
     // When we load the page, all controls that are conditionally visible must be checked to see if they need to be hidden or shown
-    //forceOnChange();
+    forceOnChange();
 
     // Loop through all input, select and textarea elements and force the OnChange event
     function forceOnChange()
