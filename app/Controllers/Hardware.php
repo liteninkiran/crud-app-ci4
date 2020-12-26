@@ -33,7 +33,12 @@
             $formData = $this->getPostData();
             $model = new Hardware_Model();
 
-            $this->saveRecord($model, $formData, 'hardware', 'hardware', 'is_unique[hardware.hardware]');
+            $id = $this->saveRecord($model, $formData, 'hardware', 'is_unique[hardware.hardware]');
+
+            if($id)
+            {
+                return $this->response->redirect(site_url('hardware'));
+            }
         }
 
         // Update record
@@ -42,7 +47,12 @@
             $formData = $this->getPostData($id);
             $model = new Hardware_Model();
 
-            $this->saveRecord($model, $formData, 'hardware', 'hardware', 'is_unique[hardware.hardware,id,' . $id . ']');
+            $id = $this->saveRecord($model, $formData, 'hardware', 'is_unique[hardware.hardware,id,' . $id . ']');
+
+            if($id)
+            {
+                return $this->response->redirect(site_url('hardware'));
+            }
         }
 
         // Delete record

@@ -103,7 +103,7 @@ class BaseController extends Controller
         exit();
     }
 
-    protected function saveRecord($model, $formData, $redirect = 'Home', $fieldName = null, $fieldRules = null)
+    protected function saveRecord($model, $formData, $fieldName = null, $fieldRules = null)
     {
         // Add validation if required
         if($fieldName && $fieldRules)
@@ -115,11 +115,7 @@ class BaseController extends Controller
         $id = $model->save($formData);
 
         // If we got an ID back, redirect to main view
-        if($id)
-        {
-            return $this->response->redirect(site_url($redirect));
-        }
-        else
+        if(!$id)
         {
             // Load the Model's errors
             $data['errors'] = $model->errors();
@@ -130,6 +126,8 @@ class BaseController extends Controller
             // Load the errors view
             $this->loadView('db_error', $data);
         }
+
+        return $id;
     }
 
     protected function deleteRecord($model, $pk, $id, $redirect = 'Home')

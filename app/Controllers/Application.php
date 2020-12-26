@@ -33,7 +33,12 @@
             $formData = $this->getPostData();
             $model = new Application_Model();
 
-            $this->saveRecord($model, $formData, 'application', 'application', 'is_unique[application.application]');
+            $id = $this->saveRecord($model, $formData, 'application', 'is_unique[application.application]');
+
+            if($id)
+            {
+                return $this->response->redirect(site_url('application'));
+            }
         }
 
         // Update record
@@ -42,7 +47,12 @@
             $formData = $this->getPostData($id);
             $model = new Application_Model();
 
-            $this->saveRecord($model, $formData, 'application', 'application', 'is_unique[application.application,id,' . $id . ']');
+            $id = $this->saveRecord($model, $formData, 'application', 'is_unique[application.application,id,' . $id . ']');
+
+            if($id)
+            {
+                return $this->response->redirect(site_url('application'));
+            }
         }
 
         // Delete record

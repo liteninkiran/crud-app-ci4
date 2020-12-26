@@ -40,7 +40,14 @@
             $formData = $this->getPostData();
             $model = new Mover_Model();
 
-            $this->saveRecord($model, $formData, 'mover', 'mover', 'is_unique[mover.mover]');
+            $id = $this->saveRecord($model, $formData);
+
+            if($id)
+            {
+                $this->updateManyToMany($id, 'Application');
+                $this->updateManyToMany($id, 'Hardware');
+                return $this->response->redirect(site_url('mover'));
+            }
         }
 
         // Update record
@@ -49,7 +56,14 @@
             $formData = $this->getPostData($id);
             $model = new Mover_Model();
 
-            $this->saveRecord($model, $formData, 'mover', 'mover', 'is_unique[mover.mover,id,' . $id . ']');
+            $id = $this->saveRecord($model, $formData);
+
+            if($id)
+            {
+                $this->updateManyToMany($id, 'Application');
+                $this->updateManyToMany($id, 'Hardware');
+                return $this->response->redirect(site_url('mover'));
+            }
         }
 
         // Delete record
@@ -118,5 +132,93 @@
 
             return $data;
         }
+
+        public function updateManyToMany($id, $model)
+        {
+            switch($model)
+            {
+
+                case "Application":
+
+                    // Create model object for inserts/deletes
+                    $mtmModel = new Mover_Application_MTM_Model();
+
+                    // Retrieve array of Applications for the Mover
+                    $mtm = $this->getMtmList($mtmModel, $id, 'mover_id', 'application_id');
+
+                    // Store column/input name
+                    $column = "application_id";
+                    $inputName = 'application';
+
+                    break;
+
+                case "Hardware":
+
+                    // Create model object for inserts/deletes
+                    $mtmModel = new Mover_Hardware_MTM_Model();
+
+                    // Retrieve array of Hardware for the Mover
+                    $mtm = $this->getMtmList($mtmModel, $id, 'mover_id', 'hardware_id');
+
+                    // Store column/input name
+                    $column = "hardware_id";
+                    $inputName = 'hardware';
+
+                    break;
+
+                default:
+
+                    return;
+            }
+
+            // Retrieve checked items
+            $items = $this->request->getVar($inputName);
+
+            if($items == null)
+            {
+                $items = array();
+            }
+
+            // Count how many items were checked/selected
+            $total = count($items);
+
+            // Loop through array
+            for($i = 0; $i < $total; $i++)
+            {
+                // Insert new records as appropriate
+                if(!in_array($items[$i], $mtm))
+                {
+                    // Store data for insert
+                    $data =
+                    [
+                        'mover_id'   => $id,
+                        $column      => $items[$i]
+                    ];
+
+                    // Do insert
+                    $mtmModel->insert($data);
+                }
+            }
+
+            // Count number of records in MTM table
+            $total = count($mtm);
+
+            // Loop through array
+            for($i = 0; $i < $total; $i++)
+            {
+                // Delete old records as appropriate
+                if(!in_array($mtm[$i], $items))
+                {
+                    // Do DELETE
+                    $mtmModel->where('mover_id', $id)->where($column, $mtm[$i])->delete();
+                }
+            }
+        }
+
+
+
     }
+
+
+
 ?>

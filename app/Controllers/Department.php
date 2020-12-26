@@ -33,7 +33,12 @@
             $formData = $this->getPostData();
             $model = new Department_Model();
 
-            $this->saveRecord($model, $formData, 'department', 'department', 'is_unique[department.department]');
+            $id = $this->saveRecord($model, $formData, 'department', 'is_unique[department.department]');
+
+            if($id)
+            {
+                return $this->response->redirect(site_url('department'));
+            }
         }
 
         // Update record
@@ -42,7 +47,12 @@
             $formData = $this->getPostData($id);
             $model = new Department_Model();
 
-            $this->saveRecord($model, $formData, 'department', 'department', 'is_unique[department.department,id,' . $id . ']');
+            $id = $this->saveRecord($model, $formData, 'department', 'is_unique[department.department,id,' . $id . ']');
+
+            if($id)
+            {
+                return $this->response->redirect(site_url('department'));
+            }
         }
 
         // Delete record
