@@ -15,7 +15,7 @@
         ];
 
 ?>
-                <div>
-                    <?php echo form_label("Employment Type *", 'employment_type'); ?>
-                    <?php echo form_dropdown_2('employment_type', $options, $mover->employment_type, $extra, ''); ?>
-                </div>
+                    <div>
+                        <?php echo form_label("Employment Type *", 'employment_type'); ?>
+                        <?php echo form_dropdown_2('employment_type', $options, $mover->employment_type, $extra, ''); ?>
+                    </div>

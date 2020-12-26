@@ -40,6 +40,10 @@
                     include('form-controls/move_date.php');
                     include('form-controls/employment_type.php');
                     include('form-controls/contract_end_date.php');
+                    include('form-controls/remote_access.php');
+                    include('form-controls/usb_usage.php');
+                    include('form-controls/usb_usage_reason.php');
+                    include('form-controls/additional_requirements.php');
 ?>
                 </div>
  
