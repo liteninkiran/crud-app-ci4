@@ -6,8 +6,8 @@
                 <div class="row">
 
                     <div class="column-3">
-                        <a href="<?php echo site_url('mover/joiner'); ?>"><img src="<?php echo site_url('assets/images/joiner.jpg'); ?>" alt="Joiner" class="icon"></a>
-                        <a href="<?php echo site_url('mover/joiner'); ?>" class="no-line"><h2>Joiner</h2></a>
+                        <a href="<?php echo site_url('joiner/create'); ?>"><img src="<?php echo site_url('assets/images/joiner.jpg'); ?>" alt="Joiner" class="icon"></a>
+                        <a href="<?php echo site_url('joiner/create'); ?>" class="no-line"><h2>Joiner</h2></a>
                         <p>A new starter joining the company</p>
                     </div>
 
