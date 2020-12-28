@@ -133,6 +133,18 @@ class BaseController extends Controller
     protected function deleteRecord($model, $pk, $id, $redirect = 'Home')
     {
         $model->where($pk, $id)->delete();
+
+        if($model->errors())
+        {
+            // Load the Model's errors
+            $data['errors'] = $model->errors();
+
+            // Load the errors view
+            $this->loadView('db_error', $data);
+
+            exit();
+        }
+
         return $this->response->redirect(site_url($redirect));
     }
 

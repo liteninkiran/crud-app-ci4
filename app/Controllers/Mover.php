@@ -64,25 +64,21 @@
                 $this->updateManyToMany($id, 'Hardware');
                 return $this->response->redirect(site_url('mover'));
             }
-        }
-
-        // Delete record
-        public function delete($id)
-        {
-            $model = new Mover_Model();
-
-            $this->deleteRecord($model, 'id', $id, 'mover');
-
-            if($model->errors())
+            else
             {
                 // Load the Model's errors
                 $data['errors'] = $model->errors();
 
                 // Load the errors view
                 $this->loadView('db_error', $data);
-
-                exit();
             }
+        }
+
+        // Delete record
+        public function delete($id)
+        {
+            $model = new Mover_Model();
+            $this->deleteRecord($model, 'id', $id, 'mover');
         }
 
         private function getPostData($id = null)
@@ -159,7 +155,7 @@
 
                     // Store column/input name
                     $column = "application_id";
-                    $inputName = 'application';
+                    $inputName = 'application[]';
 
                     break;
 
@@ -173,7 +169,7 @@
 
                     // Store column/input name
                     $column = "hardware_id";
-                    $inputName = 'hardware';
+                    $inputName = 'hardware[]';
 
                     break;
 

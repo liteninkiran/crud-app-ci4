@@ -66,19 +66,7 @@
         public function delete($id)
         {
             $model = new Leaver_Model();
-
             $this->deleteRecord($model, 'id', $id, 'leaver');
-
-            if($model->errors())
-            {
-                // Load the Model's errors
-                $data['errors'] = $model->errors();
-
-                // Load the errors view
-                $this->loadView('db_error', $data);
-
-                exit();
-            }
         }
 
         private function getPostData($id = null)
@@ -143,7 +131,7 @@
 
                     // Store column/input name
                     $column = "hardware_id";
-                    $inputName = 'hardware';
+                    $inputName = 'hardware[]';
 
                     break;
 

@@ -70,19 +70,7 @@
         public function delete($id)
         {
             $model = new Joiner_Model();
-
             $this->deleteRecord($model, 'id', $id, 'joiner');
-
-            if($model->errors())
-            {
-                // Load the Model's errors
-                $data['errors'] = $model->errors();
-
-                // Load the errors view
-                $this->loadView('db_error', $data);
-
-                exit();
-            }
         }
 
         private function getPostData($id = null)
@@ -156,7 +144,7 @@
 
                     // Store column/input name
                     $column = "application_id";
-                    $inputName = 'application';
+                    $inputName = 'application[]';
 
                     break;
 
@@ -170,7 +158,7 @@
 
                     // Store column/input name
                     $column = "hardware_id";
-                    $inputName = 'hardware';
+                    $inputName = 'hardware[]';
 
                     break;
 
