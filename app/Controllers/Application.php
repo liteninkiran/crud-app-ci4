@@ -61,6 +61,17 @@
             $model = new Application_Model();
 
             $this->deleteRecord($model, 'id', $id, 'application');
+
+            if($model->errors())
+            {
+                // Load the Model's errors
+                $data['errors'] = $model->errors();
+
+                // Load the errors view
+                $this->loadView('db_error', $data);
+
+                exit();
+            }
         }
 
         private function getPostData($id = null)

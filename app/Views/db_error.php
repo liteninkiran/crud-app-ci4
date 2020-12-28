@@ -38,31 +38,34 @@
             /* ERRORS (NOT ARRAY) */
             echo '<p>' . $errors . '</p>';
         }
+        if($formData)
+        {
 ?>
-        <!-- FORM DATA -->
-        <h1>Form Data</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Field</th>
-                    <th>Value</th>
-                </tr>
-            </thead>
-            <tbody>
-<?php
-                foreach($formData as $field => $value)
-                {
-?>
+            <!-- FORM DATA -->
+            <h1>Form Data</h1>
+            <table>
+                <thead>
                     <tr>
-                        <td><?= $field; ?></td>
-                        <td><?= $value; ?></td>
+                        <th>Field</th>
+                        <th>Value</th>
                     </tr>
+                </thead>
+                <tbody>
 <?php
-                }
+                    foreach($formData as $field => $value)
+                    {
 ?>
-            </tbody>
-        </table>
+                        <tr>
+                            <td><?= $field; ?></td>
+                            <td><?= $value; ?></td>
+                        </tr>
 <?php
+                    }
+?>
+                </tbody>
+            </table>
+<?php
+        }
     }
     else
     {
